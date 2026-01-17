@@ -178,3 +178,81 @@
     }
   }
 }
+
+/* ============================================
+   OPTION 2 THEME - OVATION DESIGN SYSTEM
+   ============================================ */
+
+:root {
+  /* Dark Backgrounds */
+  --ovation-bg-primary: #0A0A0A;
+  --ovation-bg-secondary: #1A1A1A;
+  --ovation-bg-tertiary: #2A2A2A;
+  
+  /* Brand Colors */
+  --ovation-brand-primary: #B91C3A;
+  --ovation-brand-primary-hover: #D42147;
+  --ovation-brand-secondary: #8B1529;
+  --ovation-brand-accent: #FF2D55;
+  
+  /* Text Colors */
+  --ovation-text-primary: #FFFFFF;
+  --ovation-text-secondary: #B3B3B3;
+  --ovation-text-tertiary: #808080;
+  --ovation-text-disabled: #4D4D4D;
+  
+  /* Border Colors */
+  --ovation-border-primary: #333333;
+  --ovation-border-secondary: #404040;
+  --ovation-border-accent: #B91C3A;
+}
+
+@layer utilities {
+  /* Ovation Container */
+  .ovation-container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .ovation-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ovation-container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  /* Ovation Colors */
+  .bg-ovation-bg-primary { background-color: var(--ovation-bg-primary); }
+  .bg-ovation-bg-secondary { background-color: var(--ovation-bg-secondary); }
+  .bg-ovation-bg-tertiary { background-color: var(--ovation-bg-tertiary); }
+  .bg-ovation-brand-primary { background-color: var(--ovation-brand-primary); }
+  .bg-ovation-brand-primary-hover { background-color: var(--ovation-brand-primary-hover); }
+  .bg-ovation-brand-secondary { background-color: var(--ovation-brand-secondary); }
+  .bg-ovation-brand-accent { background-color: var(--ovation-brand-accent); }
+  
+  .text-ovation-text-primary { color: var(--ovation-text-primary); }
+  .text-ovation-text-secondary { color: var(--ovation-text-secondary); }
+  .text-ovation-text-tertiary { color: var(--ovation-text-tertiary); }
+  .text-ovation-text-disabled { color: var(--ovation-text-disabled); }
+  .text-ovation-brand-primary { color: var(--ovation-brand-primary); }
+  .text-ovation-brand-primary-hover { color: var(--ovation-brand-primary-hover); }
+  
+  .border-ovation-border-primary { border-color: var(--ovation-border-primary); }
+  .border-ovation-border-secondary { border-color: var(--ovation-border-secondary); }
+  .border-ovation-border-accent { border-color: var(--ovation-border-accent); }
+
+  /* Ovation Glow */
+  .ovation-glow-red {
+    box-shadow: 0 0 24px rgba(185, 28, 58, 0.4);
+  }
+}

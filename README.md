@@ -46,23 +46,41 @@ This project is configured for Vercel deployment:
 ## 📁 Project Structure
 
 ```
-├── app/              # Next.js app directory
-│   ├── layout.tsx    # Root layout
-│   ├── page.tsx      # Homepage
-│   └── globals.css   # Global styles
-├── components/       # React components
-│   ├── Header.tsx   # Navigation bar
-│   ├── Hero.tsx     # Hero section
+├── app/                    # Next.js app directory
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx            # Homepage (MVP option selector)
+│   ├── globals.css         # Global styles
+│   └── options/            # MVP design options
+│       ├── 1/              # Option 1 - Modern Dark Theme
+│       │   └── page.tsx
+│       ├── 2/              # Option 2 - Coming Soon
+│       │   └── page.tsx
+│       └── 3/              # Option 3 - Coming Soon
+│           └── page.tsx
+├── components/              # React components
+│   ├── Header.tsx          # Navigation bar
+│   ├── Hero.tsx           # Hero section
 │   ├── CoreValues.tsx
 │   ├── Services.tsx
 │   ├── WhyChooseUs.tsx
 │   ├── Statistics.tsx
-│   └── Footer.tsx
-└── public/           # Static assets
-    ├── icons/       # SVG icons
-    ├── images/      # Background images
-    └── logos/       # Logo files
+│   ├── Footer.tsx
+│   └── ScrollProgress.tsx
+└── public/                 # Static assets
+    ├── icons/             # SVG icons
+    ├── images/            # Background images
+    └── logos/            # Logo files
 ```
+
+## 🎯 MVP Options
+
+This project contains 3 different homepage design options for client selection:
+
+- **Option 1** (`/options/1`) - Modern dark theme with premium animations
+- **Option 2** (`/options/2`) - Coming soon (placeholder)
+- **Option 3** (`/options/3`) - Coming soon (placeholder)
+
+Navigate to the homepage (`/`) to select and preview each option.
 
 ## 🎨 Customization
 
