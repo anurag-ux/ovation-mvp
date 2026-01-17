@@ -27,12 +27,17 @@ export function ParticleBackground() {
       radius: number
     }> = []
 
-    for (let i = 0; i < 50; i++) {
+    // Reduce particles on mobile for better performance
+    const isMobile = window.innerWidth < 768
+    const particleCount = isMobile ? 15 : 50
+    const maxDistance = isMobile ? 100 : 150
+
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
         radius: Math.random() * 2 + 1,
       })
     }
@@ -57,11 +62,11 @@ export function ParticleBackground() {
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 150) {
+          if (distance < maxDistance) {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(179, 9, 32, ${0.1 * (1 - distance / 150)})`
+            ctx.strokeStyle = `rgba(179, 9, 32, ${0.1 * (1 - distance / maxDistance)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -81,7 +86,7 @@ export function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className="fixed inset-0 pointer-events-none z-0 hidden md:block"
       style={{ mixBlendMode: 'multiply' }}
     />
   )

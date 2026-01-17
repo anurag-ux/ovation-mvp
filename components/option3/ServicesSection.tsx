@@ -97,14 +97,13 @@ export function ServicesSection() {
           ))}
         </div>
 
-        {/* Service Content - Flip Animation */}
+        {/* Service Content - Simplified animation for mobile */}
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, rotateX: -90 }}
-          animate={{ opacity: 1, rotateX: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="max-w-5xl mx-auto"
-          style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
         >
           <motion.div
             className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 relative overflow-hidden group"

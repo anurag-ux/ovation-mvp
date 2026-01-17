@@ -185,47 +185,30 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Right: Visual Element - 3D Card Stack */}
+            {/* Right: Visual Element - Simplified for mobile */}
             <motion.div
-              initial={{ opacity: 0, x: 50, rotateY: -20 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:block perspective-1000"
-              style={{ perspective: '1000px' }}
+              className="relative hidden lg:block"
             >
               <div className="relative w-full aspect-square">
-                {/* Multiple layered cards with 3D effect */}
+                {/* Simplified card - no 3D transforms on mobile */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-[#b30920]/10 to-blue-500/10 rounded-3xl"
                   animate={{
-                    rotateY: [0, 5, -5, 0],
-                    rotateX: [0, 2, -2, 0],
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                />
-                <motion.div
-                  className="absolute inset-2 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl"
-                  animate={{
-                    rotateY: [0, -3, 3, 0],
-                    rotateX: [0, -1, 1, 0],
+                    scale: [1, 1.02, 1],
                   }}
                   transition={{
                     duration: 8,
                     repeat: Infinity,
                     ease: 'easeInOut',
-                    delay: 0.3,
                   }}
-                  style={{ transformStyle: 'preserve-3d' }}
                 />
                 <motion.div
                   className="absolute inset-4 bg-white rounded-2xl shadow-2xl border border-gray-100 flex items-center justify-center"
                   animate={{
-                    rotateY: [0, 2, -2, 0],
+                    y: [0, -5, 0],
                   }}
                   transition={{
                     duration: 6,
@@ -233,8 +216,7 @@ export function HeroSection() {
                     ease: 'easeInOut',
                     delay: 0.5,
                   }}
-                  style={{ transformStyle: 'preserve-3d' }}
-                  whileHover={{ scale: 1.05, rotateY: 5 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   <div className="text-center p-8">
                     <div className="w-24 h-24 bg-gradient-to-br from-[#b30920] to-red-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg">

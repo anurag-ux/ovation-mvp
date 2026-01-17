@@ -56,13 +56,12 @@ export function CoreValuesSection() {
           {values.map((value, index) => (
             <motion.div
               key={value.title}
-              initial={{ opacity: 0, y: 30, rotateX: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
               className="group relative"
-              whileHover={{ y: -10, rotateY: 5 }}
-              style={{ transformStyle: 'preserve-3d' }}
+              whileHover={{ y: -5 }}
             >
               <motion.div
                 className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 h-full relative overflow-hidden"

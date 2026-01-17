@@ -54,13 +54,12 @@ export function WhyChooseUsSection() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 relative overflow-hidden"
-              whileHover={{ y: -10, scale: 1.05, rotateY: 5 }}
-              style={{ transformStyle: 'preserve-3d' }}
+              whileHover={{ y: -5, scale: 1.02 }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-[#b30920]/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"

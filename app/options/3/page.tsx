@@ -15,7 +15,10 @@ import { GeometricBackground } from '@/components/option3/GeometricBackground'
 
 export default function Option3() {
   useEffect(() => {
-    // Add scrollbar styles to document
+    // Add scrollbar styles to document (desktop only)
+    const isMobile = window.innerWidth < 768
+    if (isMobile) return
+
     const style = document.createElement('style')
     style.textContent = `
       html::-webkit-scrollbar {
@@ -43,7 +46,9 @@ export default function Option3() {
     `
     document.head.appendChild(style)
     return () => {
-      document.head.removeChild(style)
+      if (document.head.contains(style)) {
+        document.head.removeChild(style)
+      }
     }
   }, [])
 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function GeometricBackground() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
       {/* Geometric Shapes */}
       <motion.div
         className="absolute top-20 left-10 w-32 h-32 border-2 border-[#b30920]/10 rotate-45"
