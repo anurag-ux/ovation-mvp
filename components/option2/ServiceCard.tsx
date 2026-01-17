@@ -41,13 +41,13 @@ export function ServiceCard({ image, title, description, features }: ServiceCard
         <div className="absolute inset-0 bg-gradient-to-t from-ovation-bg-primary/90 to-transparent" />
       </div>
       
-      <div className="p-8">
-        <h3 className="text-ovation-text-primary mb-4">{title}</h3>
-        <p className="text-ovation-text-secondary mb-6">{description}</p>
+      <div className="p-6 md:p-8">
+        <h3 className="ovation-h3 text-ovation-text-primary mb-4">{title}</h3>
+        <p className="text-ovation-text-secondary mb-6 text-sm md:text-base leading-relaxed">{description}</p>
         
         <ul className="space-y-3 mb-6">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-3 text-ovation-text-secondary">
+            <li key={index} className="flex items-start gap-3 text-ovation-text-secondary text-sm md:text-base">
               <div className="w-1.5 h-1.5 rounded-full bg-ovation-brand-primary mt-2 flex-shrink-0" />
               <span>{feature}</span>
             </li>

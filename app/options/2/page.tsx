@@ -11,7 +11,7 @@ import { Footer } from '@/components/option2/Footer'
 
 export default function Option2() {
   return (
-    <div className="min-h-screen bg-ovation-bg-primary">
+    <div className="min-h-screen bg-ovation-bg-primary text-ovation-text-primary">
       {/* Back to Options Link */}
       <div className="fixed top-4 left-4 z-[60]">
         <Link

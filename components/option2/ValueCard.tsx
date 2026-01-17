@@ -26,8 +26,8 @@ export function ValueCard({ icon: Icon, title, description }: ValueCardProps) {
       <div className="bg-ovation-brand-primary/10 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
         <Icon className="w-8 h-8 text-ovation-brand-primary" />
       </div>
-      <h3 className="text-ovation-text-primary mb-4">{title}</h3>
-      <p className="text-ovation-text-secondary">{description}</p>
+      <h3 className="ovation-h4 text-ovation-text-primary mb-4">{title}</h3>
+      <p className="text-ovation-text-secondary text-sm md:text-base leading-relaxed">{description}</p>
     </motion.div>
   )
 }

@@ -61,13 +61,13 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase">
+          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase text-xs md:text-sm">
             Our Services
           </p>
-          <h2 className="text-ovation-text-primary mb-6">
+          <h2 className="ovation-h2 text-ovation-text-primary mb-6">
             Comprehensive Workplace Solutions
           </h2>
-          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-lg">
+          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-base md:text-lg">
             From facility management to cutting-edge technology, we provide end-to-end solutions tailored to your unique needs.
           </p>
         </motion.div>

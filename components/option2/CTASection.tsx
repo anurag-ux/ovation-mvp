@@ -86,8 +86,8 @@ export function CTASection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                 >
-                  <CheckCircle2 className="w-6 h-6 text-ovation-brand-primary flex-shrink-0 mt-1" />
-                  <span className="text-ovation-text-primary">{benefit}</span>
+                  <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-ovation-brand-primary flex-shrink-0 mt-1" />
+                  <span className="text-ovation-text-primary text-sm md:text-base">{benefit}</span>
                 </motion.div>
               ))}
             </motion.div>

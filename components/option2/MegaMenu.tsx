@@ -108,7 +108,7 @@ export function MegaMenu() {
       scale: 1,
       transition: {
         duration: 0.3,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
         staggerChildren: 0.05,
         delayChildren: 0.1,
       },
@@ -119,7 +119,7 @@ export function MegaMenu() {
       scale: 0.95,
       transition: {
         duration: 0.2,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
   }
@@ -131,7 +131,7 @@ export function MegaMenu() {
       x: 0,
       transition: {
         duration: 0.3,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
   }
@@ -143,14 +143,14 @@ export function MegaMenu() {
       x: 0,
       transition: {
         duration: 0.2,
-        ease: [0.4, 0, 0.2, 1],
+        ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
   }
 
   return (
-    <div className="bg-ovation-bg-primary/95 backdrop-blur-lg shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-ovation-border-primary">
-      <nav className="ovation-container py-4">
+    <div className="bg-ovation-bg-primary/98 backdrop-blur-xl shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-ovation-border-primary">
+      <nav className="ovation-container py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -174,7 +174,11 @@ export function MegaMenu() {
             >
               {/* Trigger Button */}
               <motion.button
-                className="flex items-center gap-2 text-ovation-text-primary hover:text-ovation-brand-primary font-semibold transition-colors duration-300"
+                className={`flex items-center gap-2 font-semibold transition-colors duration-300 text-sm ${
+                  isMegaMenuOpen 
+                    ? 'text-ovation-brand-primary' 
+                    : 'text-ovation-text-primary hover:text-ovation-brand-primary'
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -200,13 +204,13 @@ export function MegaMenu() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <motion.div
-                      className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-lg shadow-2xl p-8 backdrop-blur-xl"
+                      className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-xl shadow-2xl p-6 md:p-8 backdrop-blur-xl"
                       style={{
                         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(185, 28, 58, 0.1)',
                       }}
                     >
                       {/* 4 COLUMN GRID */}
-                      <div className="grid grid-cols-4 gap-8">
+                      <div className="grid grid-cols-4 gap-6 md:gap-8">
                         {menuColumns.map((column, colIndex) => (
                           <motion.div
                             key={column.title}
@@ -217,7 +221,7 @@ export function MegaMenu() {
                           >
                             {/* Column Header */}
                             <motion.h4
-                              className="text-ovation-text-primary font-semibold mb-4 text-lg"
+                              className="ovation-h4 text-ovation-text-primary font-semibold mb-4"
                               whileHover={{ x: 4 }}
                               transition={{ duration: 0.2 }}
                             >
@@ -225,7 +229,7 @@ export function MegaMenu() {
                             </motion.h4>
                             
                             {/* Column Links */}
-                            <ul className="space-y-3">
+                            <ul className="space-y-2.5">
                               {column.items.map((item, itemIndex) => (
                                 <motion.li
                                   key={item.label}
@@ -236,7 +240,7 @@ export function MegaMenu() {
                                 >
                                   <Link
                                     href={item.href}
-                                    className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-all duration-300 block group relative"
+                                    className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-all duration-300 block group relative text-sm"
                                   >
                                     <motion.span
                                       className="relative inline-block"
@@ -265,7 +269,7 @@ export function MegaMenu() {
 
             <Link
               href="#about"
-              className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group"
+              className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group text-sm font-medium"
             >
               <span className="relative">
                 About
@@ -278,7 +282,7 @@ export function MegaMenu() {
             </Link>
             <Link
               href="#contact"
-              className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group"
+              className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group text-sm font-medium"
             >
               <span className="relative">
                 Contact
@@ -299,7 +303,7 @@ export function MegaMenu() {
             >
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-ovation-brand-primary text-ovation-text-primary font-semibold hover:bg-ovation-brand-primary-hover transition-all duration-300 ovation-glow-red"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-ovation-brand-primary text-ovation-text-primary font-semibold hover:bg-ovation-brand-primary-hover transition-all duration-300 ovation-glow-red text-sm"
               >
                 Get Started
               </Link>

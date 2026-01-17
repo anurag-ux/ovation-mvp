@@ -86,7 +86,7 @@ function CountUpAnimation({ value, suffix }: { value: number; suffix: string }) 
   }, [isVisible, value])
 
   return (
-    <div ref={ref} className="text-5xl md:text-6xl lg:text-7xl font-bold text-ovation-brand-primary">
+    <div ref={ref} className="text-4xl md:text-5xl lg:text-6xl font-bold text-ovation-brand-primary">
       {count}
       {suffix}
     </div>
@@ -109,13 +109,13 @@ export function StatisticsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase">
+          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase text-xs md:text-sm">
             Our Impact
           </p>
-          <h2 className="text-ovation-text-primary mb-6">
+          <h2 className="ovation-h2 text-ovation-text-primary mb-6">
             Numbers That Speak for Themselves
           </h2>
-          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-lg">
+          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-base md:text-lg">
             Our track record demonstrates our commitment to excellence and the trust our clients place in us.
           </p>
         </motion.div>
@@ -131,8 +131,8 @@ export function StatisticsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <CountUpAnimation value={stat.value} suffix={stat.suffix} />
-              <h4 className="text-ovation-text-primary mt-4 mb-2">{stat.label}</h4>
-              <p className="text-ovation-text-secondary">{stat.description}</p>
+              <h4 className="ovation-h4 text-ovation-text-primary mt-4 mb-2">{stat.label}</h4>
+              <p className="text-ovation-text-secondary text-sm md:text-base">{stat.description}</p>
             </motion.div>
           ))}
         </div>

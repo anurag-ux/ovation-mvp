@@ -101,13 +101,13 @@ export function Footer() {
           {/* Links Columns */}
           {Object.entries(footerLinks).map(([key, section]) => (
             <div key={key}>
-              <h5 className="text-ovation-text-primary font-semibold mb-4">{section.title}</h5>
+              <h5 className="ovation-h4 text-ovation-text-primary font-semibold mb-4">{section.title}</h5>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-colors"
+                      className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-colors text-sm md:text-base"
                     >
                       {link.label}
                     </Link>
@@ -127,8 +127,8 @@ export function Footer() {
           transition={{ duration: 0.8 }}
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h4 className="text-ovation-text-primary mb-2">Stay Updated</h4>
-            <p className="text-ovation-text-secondary mb-6">
+            <h4 className="ovation-h4 text-ovation-text-primary mb-2">Stay Updated</h4>
+            <p className="text-ovation-text-secondary mb-6 text-sm md:text-base">
               Subscribe to our newsletter for the latest insights and updates.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

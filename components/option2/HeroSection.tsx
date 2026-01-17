@@ -5,9 +5,9 @@ import { OvationButton } from './OvationButton'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ovation-bg-primary via-ovation-bg-secondary to-ovation-bg-primary" />
+      <div className="absolute inset-0 bg-gradient-to-br from-ovation-bg-primary via-ovation-bg-primary to-ovation-bg-secondary" />
       
       {/* Animated background elements */}
       <motion.div
@@ -37,7 +37,7 @@ export function HeroSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 ovation-container py-32 md:py-40">
+      <div className="relative z-10 ovation-container py-20 md:py-32">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.p
-              className="text-ovation-brand-primary font-semibold mb-6 tracking-wider uppercase"
+              className="text-ovation-brand-primary font-semibold mb-4 md:mb-6 tracking-wider uppercase text-xs md:text-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -54,7 +54,7 @@ export function HeroSection() {
             </motion.p>
             
             <motion.h1
-              className="text-ovation-text-primary mb-8 max-w-4xl mx-auto"
+              className="ovation-h1 text-ovation-text-primary mb-6 md:mb-8 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -63,7 +63,7 @@ export function HeroSection() {
             </motion.h1>
             
             <motion.p
-              className="text-ovation-text-secondary mb-12 max-w-3xl mx-auto text-lg md:text-xl"
+              className="text-ovation-text-secondary mb-10 md:mb-12 max-w-3xl mx-auto text-base md:text-lg leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -106,10 +106,10 @@ export function HeroSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
               >
-                <div className="text-4xl md:text-5xl font-bold text-ovation-brand-primary mb-2">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-ovation-brand-primary mb-2">
                   {stat.value}
                 </div>
-                <div className="text-ovation-text-secondary text-sm md:text-base">
+                <div className="text-ovation-text-secondary text-xs md:text-sm">
                   {stat.label}
                 </div>
               </motion.div>

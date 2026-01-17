@@ -38,13 +38,13 @@ export function CoreValuesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase">
+          <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase text-xs md:text-sm">
             Our Values
           </p>
-          <h2 className="text-ovation-text-primary mb-6">
+          <h2 className="ovation-h2 text-ovation-text-primary mb-6">
             Built on a Foundation of Trust
           </h2>
-          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-lg">
+          <p className="text-ovation-text-secondary max-w-3xl mx-auto text-base md:text-lg">
             Our core values guide every decision we make and every service we deliver, ensuring consistent excellence for our clients.
           </p>
         </motion.div>
