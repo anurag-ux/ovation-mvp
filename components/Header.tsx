@@ -161,7 +161,9 @@ export default function Header() {
                 return (
                   <div
                     key={link.label}
-                    ref={(el) => (dropdownRefs.current[link.label] = el)}
+                    ref={(el) => {
+                      dropdownRefs.current[link.label] = el
+                    }}
                     className="relative"
                     onMouseEnter={() => setOpenDropdown(link.label)}
                     onMouseLeave={() => setOpenDropdown(null)}
