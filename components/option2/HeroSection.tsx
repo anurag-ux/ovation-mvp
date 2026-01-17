@@ -37,7 +37,7 @@ export function HeroSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 ovation-container py-20 md:py-32">
+      <div className="relative z-10 ovation-container pt-8 pb-20 md:pb-32">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
