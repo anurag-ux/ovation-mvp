@@ -62,18 +62,24 @@ export function ServicesSection() {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 300 : -300,
       opacity: 0,
+      scale: 0.95,
+      rotateY: direction > 0 ? 15 : -15,
     }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
+      scale: 1,
+      rotateY: 0,
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 300 : -300,
       opacity: 0,
+      scale: 0.95,
+      rotateY: direction < 0 ? 15 : -15,
     }),
   }
 
@@ -91,13 +97,7 @@ export function ServicesSection() {
     }
   }
 
-  // Auto-play carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      paginate(1)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [currentIndex])
+  // Disable auto-play - user controls via tabs
 
   const currentService = services[currentIndex]
 
@@ -124,8 +124,38 @@ export function ServicesSection() {
 
         {/* Carousel Container */}
         <div className="relative max-w-5xl mx-auto">
+          {/* Service Tabs at Top */}
+          <div className="flex justify-center gap-2 sm:gap-3 mb-8 flex-wrap px-4">
+            {services.map((service, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1)
+                  setCurrentIndex(index)
+                }}
+                className={`px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ovation-brand-primary flex items-center gap-2 ${
+                  index === currentIndex
+                    ? 'bg-ovation-brand-primary text-ovation-text-primary shadow-lg shadow-ovation-brand-primary/50'
+                    : 'bg-ovation-bg-primary text-ovation-text-secondary hover:text-ovation-text-primary border border-ovation-border-primary hover:border-ovation-brand-primary/50'
+                }`}
+                aria-label={`View ${service.title}`}
+              >
+                {index === currentIndex && (
+                  <Image
+                    src={service.icon}
+                    alt=""
+                    width={18}
+                    height={18}
+                    className="brightness-0 invert"
+                  />
+                )}
+                {service.title}
+              </button>
+            ))}
+          </div>
+
           {/* Carousel */}
-          <div className="relative h-[450px] md:h-[500px] rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg bg-ovation-bg-primary">
+          <div className="relative min-h-[600px] md:h-[500px] rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg bg-ovation-bg-primary" style={{ perspective: '1000px' }}>
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -135,12 +165,15 @@ export function ServicesSection() {
                 animate="center"
                 exit="exit"
                 transition={{
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
+                  x: { type: 'spring', stiffness: 200, damping: 25 },
+                  opacity: { duration: 0.3 },
+                  scale: { duration: 0.3 },
+                  rotateY: { duration: 0.3 },
                 }}
                 drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
+                dragConstraints={{ left: -100, right: 100 }}
+                dragElastic={0.2}
+                whileDrag={{ scale: 0.98 }}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = swipePower(offset.x, velocity.x)
 
@@ -151,16 +184,17 @@ export function ServicesSection() {
                   }
                 }}
                 className="absolute inset-0"
+                style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
               >
                 <div className="relative h-full w-full bg-ovation-bg-secondary">
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col md:flex-row items-center justify-center p-6 md:p-8 lg:p-10 gap-8 md:gap-12">
+                  <div className="relative z-10 h-full flex flex-col md:flex-row items-center justify-center p-4 md:p-8 lg:p-10 gap-6 md:gap-12">
                     {/* Left: Image */}
                     <motion.div
                       initial={{ x: -30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
-                      className="relative w-full md:w-1/2 h-64 md:h-full max-h-96 rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg"
+                      className="relative w-full md:w-1/2 h-48 sm:h-56 md:h-full md:max-h-96 rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg flex-shrink-0"
                     >
                       <Image
                         src={currentService.image}
@@ -251,35 +285,6 @@ export function ServicesSection() {
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-          </div>
-
-          {/* Service Tabs Below */}
-          <div className="flex justify-center gap-2 sm:gap-3 mt-6 flex-wrap px-4">
-            {services.map((service, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1)
-                  setCurrentIndex(index)
-                }}
-                className={`px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ovation-brand-primary flex items-center gap-2 ${
-                  index === currentIndex
-                    ? 'bg-ovation-brand-primary text-ovation-text-primary shadow-lg shadow-ovation-brand-primary/50'
-                    : 'bg-ovation-bg-primary text-ovation-text-secondary hover:text-ovation-text-primary border border-ovation-border-primary hover:border-ovation-brand-primary/50'
-                }`}
-                aria-label={`View ${service.title}`}
-              >
-                {index === currentIndex && (
-                  <Image
-                    src={service.icon}
-                    alt=""
-                    width={18}
-                    height={18}
-                  />
-                )}
-                {service.title}
-              </button>
-            ))}
           </div>
 
           {/* Dots Indicator */}
