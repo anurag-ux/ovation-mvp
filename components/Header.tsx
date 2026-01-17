@@ -217,6 +217,7 @@ export default function Header() {
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.icon && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={link.icon}
                       alt=""
@@ -313,6 +314,7 @@ export default function Header() {
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.icon && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={link.icon}
                       alt=""

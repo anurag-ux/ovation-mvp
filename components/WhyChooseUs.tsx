@@ -78,7 +78,7 @@ export default function WhyChooseUs() {
           </div>
           <p className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto">
             At Ovation Workplace Services, we are committed to innovation, integrity, and customer satisfaction. 
-            Our comprehensive IT solutions are designed to help your business thrive in today's digital landscape.
+            Our comprehensive IT solutions are designed to help your business thrive in today&apos;s digital landscape.
           </p>
         </div>
 
