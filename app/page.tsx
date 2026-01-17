@@ -16,11 +16,11 @@ export default function Home() {
       <div className="container mx-auto relative z-10 w-full">
         <div className="text-center mb-8 md:mb-12 animate-fade-in-up px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4">
-            <span className="text-white">Ovation MVP </span>
-            <span className="text-gradient">Options</span>
+            <span className="text-white">Ovation Workplace Services </span>
+            <span className="text-gradient">MVP Options</span>
           </h1>
           <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
-            Select an option to preview the homepage redesign
+            Explore three distinct design options for the homepage redesign. Each option offers a unique approach to showcasing our IT solutions and services.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function Home() {
                 Option 1
               </h2>
               <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-1">
-                Modern dark theme with premium animations, glassmorphism effects, and smooth transitions. Fully responsive design with enhanced UX.
+                Modern dark theme with premium animations, glassmorphism effects, and smooth transitions. Features interactive service tabs, animated statistics, and comprehensive content sections. Fully responsive design with enhanced UX.
               </p>
               <div className="flex items-center gap-2 text-brand-red text-xs sm:text-sm font-semibold group-hover:gap-3 transition-all mt-auto">
                 View Design
@@ -67,7 +67,7 @@ export default function Home() {
                 Option 2
               </h2>
               <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-1">
-                Modern design with mega menu navigation, animated statistics, and comprehensive service showcases. Built with Framer Motion animations.
+                Modern design with interactive mega menu, Tinder-like swipeable carousel, service tabs as headings, and comprehensive sections including Why Choose Us. Features smooth animations and mobile-optimized layouts.
               </p>
               <div className="flex items-center gap-2 text-blue-400 text-xs sm:text-sm font-semibold group-hover:gap-3 transition-all mt-auto">
                 View Design
@@ -82,8 +82,8 @@ export default function Home() {
           {/* Option 3 */}
           <Link
             href="/options/3"
-            className="group relative premium-card p-6 sm:p-7 md:p-8 rounded-xl md:rounded-2xl hover-lift transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg opacity-60 min-h-[280px] sm:min-h-[300px] flex flex-col sm:col-span-2 md:col-span-1"
-            aria-label="View Option 3 - Coming Soon"
+            className="group relative premium-card p-6 sm:p-7 md:p-8 rounded-xl md:rounded-2xl hover-lift transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-h-[280px] sm:min-h-[300px] flex flex-col sm:col-span-2 md:col-span-1"
+            aria-label="View Option 3 - Light Theme Artistic Design"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl md:rounded-2xl" aria-hidden="true"></div>
             <div className="relative z-10 flex flex-col flex-1">
@@ -94,7 +94,7 @@ export default function Home() {
                 Option 3
               </h2>
               <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-1">
-                Coming soon - This option will feature a unique design direction and creative approach.
+                Light-themed artistic design with modern aesthetics, geometric elements, and creative layouts. Professional B2B approach with elegant visual storytelling.
               </p>
               <div className="flex items-center gap-2 text-purple-400 text-xs sm:text-sm font-semibold group-hover:gap-3 transition-all mt-auto">
                 View Design
@@ -107,10 +107,10 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Back to options link (will be visible on option pages) */}
+        {/* Footer Note */}
         <div className="text-center mt-8 sm:mt-12 px-4">
           <p className="text-gray-500 text-xs sm:text-sm">
-            Select an option above to preview the design
+            Click on any option card above to explore the full design experience
           </p>
         </div>
       </div>

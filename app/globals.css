@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animated Scrollbar for Option 3 */
+@layer utilities {
+  @keyframes scrollbar-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(179, 9, 32, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(179, 9, 32, 0.6);
+    }
+  }
+
+  /* Webkit browsers (Chrome, Safari, Edge) - Option 3 only */
+  [data-option="3"]::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  [data-option="3"]::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  [data-option="3"]::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #b30920, #8a0719);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+    animation: scrollbar-glow 2s ease-in-out infinite;
+  }
+
+  [data-option="3"]::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #8a0719, #b30920);
+    box-shadow: 0 0 10px rgba(179, 9, 32, 0.5);
+  }
+
+  /* Firefox - Option 3 only */
+  [data-option="3"] {
+    scrollbar-width: thin;
+    scrollbar-color: #b30920 #f1f1f1;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
