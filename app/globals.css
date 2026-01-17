@@ -270,6 +270,32 @@
     box-shadow: 0 0 24px rgba(185, 28, 58, 0.4);
   }
   
+  /* Mega Menu Container - Prevent overflow */
+  .mega-menu-container {
+    position: relative;
+    overflow: visible;
+  }
+  
+  .mega-menu-panel {
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(calc(100vw - 3rem), 1100px);
+    max-width: 1100px;
+  }
+  
+  @media (max-width: 1280px) {
+    .mega-menu-panel {
+      width: calc(100vw - 3rem);
+      max-width: 1100px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .mega-menu-panel {
+      width: calc(100vw - 2rem);
+    }
+  }
+  
   /* Typography for Option 2 */
   .ovation-h1 {
     font-size: var(--ovation-text-h1-mobile);

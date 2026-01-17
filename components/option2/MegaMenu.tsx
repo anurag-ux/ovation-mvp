@@ -149,7 +149,10 @@ export function MegaMenu() {
   }
 
   return (
-    <div className="bg-ovation-bg-primary/98 backdrop-blur-xl shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-ovation-border-primary">
+    <div 
+      className="bg-ovation-bg-primary/98 backdrop-blur-xl shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-ovation-border-primary"
+      style={{ '--nav-height': '80px' } as React.CSSProperties}
+    >
       <nav className="ovation-container py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -194,23 +197,29 @@ export function MegaMenu() {
               {/* MEGA MENU PANEL - Animated */}
               <AnimatePresence>
                 {isMegaMenuOpen && (
-                  <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    variants={menuVariants}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-screen max-w-6xl z-[100] pointer-events-auto"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
+                  <div className="fixed left-0 right-0 top-0 z-[100] pointer-events-none" style={{ top: 'calc(var(--nav-height, 80px) + 1rem)' }}>
+                    <div className="ovation-container pointer-events-auto">
+                      <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={menuVariants}
+                        className="mx-auto"
+                        style={{
+                          width: '100%',
+                          maxWidth: '1100px',
+                        }}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      >
                     <motion.div
-                      className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-xl shadow-2xl p-6 md:p-8 backdrop-blur-xl"
+                      className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-xl shadow-2xl p-5 md:p-6 lg:p-8 backdrop-blur-xl"
                       style={{
                         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(185, 28, 58, 0.1)',
                       }}
                     >
                       {/* 4 COLUMN GRID */}
-                      <div className="grid grid-cols-4 gap-6 md:gap-8">
+                      <div className="grid grid-cols-4 gap-3 md:gap-5 lg:gap-6">
                         {menuColumns.map((column, colIndex) => (
                           <motion.div
                             key={column.title}
@@ -262,7 +271,9 @@ export function MegaMenu() {
                         ))}
                       </div>
                     </motion.div>
-                  </motion.div>
+                      </motion.div>
+                    </div>
+                  </div>
                 )}
               </AnimatePresence>
             </div>
