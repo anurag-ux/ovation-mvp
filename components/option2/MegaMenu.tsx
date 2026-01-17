@@ -8,44 +8,40 @@ import Link from 'next/link'
 
 interface MenuColumn {
   title: string
-  items: { label: string; href: string }[]
+  items: { label: string; href: string; icon?: string }[]
 }
 
 const menuColumns: MenuColumn[] = [
   {
-    title: 'Services',
+    title: 'Technology Areas',
     items: [
-      { label: 'Facility Management', href: '#' },
-      { label: 'Workspace Solutions', href: '#' },
-      { label: 'Technology Services', href: '#' },
-      { label: 'Maintenance & Support', href: '#' },
+      { label: 'Digital Workplace', href: '#services' },
+      { label: 'Hybrid Cloud Services', href: '#services' },
+      { label: 'NextGen Network', href: '#services' },
+      { label: 'Cybersecurity', href: '#services' },
     ],
   },
   {
-    title: 'Solutions',
+    title: 'Support Models',
     items: [
-      { label: 'Corporate Offices', href: '#' },
-      { label: 'Healthcare', href: '#' },
-      { label: 'Education', href: '#' },
-      { label: 'Government', href: '#' },
+      { label: 'Field Services', href: '#services' },
+      { label: 'Staffing & Professional Services', href: '#services' },
+      { label: 'Managed Services', href: '#services' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'About Us',
     items: [
-      { label: 'Case Studies', href: '#' },
-      { label: 'Blog', href: '#' },
-      { label: 'Whitepapers', href: '#' },
-      { label: 'Events', href: '#' },
+      { label: 'Leadership', href: '#about' },
     ],
   },
   {
     title: 'Company',
     items: [
-      { label: 'About Us', href: '#' },
-      { label: 'Careers', href: '#' },
-      { label: 'Contact', href: '#' },
-      { label: 'Partners', href: '#' },
+      { label: 'Vantage', href: '#services', icon: 'https://www.ovationwps.com/vantage.svg' },
+      { label: 'Staffing', href: '#services' },
+      { label: 'Careers', href: '#footer' },
+      { label: 'Ovation HR', href: '#footer', icon: 'https://www.ovationwps.com/vantage.svg' },
     ],
   },
 ]
@@ -55,6 +51,15 @@ export function MegaMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setIsMobileMenuOpen(false)
+      setIsMegaMenuOpen(false)
+    }
+  }
 
   // Close menu on outside click
   useEffect(() => {
@@ -99,50 +104,50 @@ export function MegaMenu() {
   const menuVariants = {
     hidden: {
       opacity: 0,
-      y: -20,
-      scale: 0.95,
+      y: -15,
+      scale: 0.98,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.4,
         ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
       },
     },
     exit: {
       opacity: 0,
-      y: -20,
-      scale: 0.95,
+      y: -15,
+      scale: 0.98,
       transition: {
-        duration: 0.2,
+        duration: 0.25,
         ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
   }
 
   const columnVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, y: 10 },
     visible: { 
       opacity: 1, 
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.4,
         ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
+    hidden: { opacity: 0, x: -8 },
     visible: { 
       opacity: 1, 
       x: 0,
       transition: {
-        duration: 0.2,
+        duration: 0.3,
         ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
       },
     },
@@ -185,7 +190,7 @@ export function MegaMenu() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Solutions
+                Services
                 <motion.div
                   animate={{ rotate: isMegaMenuOpen ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
@@ -197,7 +202,7 @@ export function MegaMenu() {
               {/* MEGA MENU PANEL - Animated */}
               <AnimatePresence>
                 {isMegaMenuOpen && (
-                  <div className="fixed left-0 right-0 top-0 z-[100] pointer-events-none" style={{ top: 'calc(var(--nav-height, 80px) + 1rem)' }}>
+                  <div className="fixed left-0 right-0 top-0 z-[100] pointer-events-none" style={{ top: 'calc(var(--nav-height, 80px) + 0.5rem)' }}>
                     <div className="ovation-container pointer-events-auto">
                       <motion.div
                         initial="hidden"
@@ -207,19 +212,26 @@ export function MegaMenu() {
                         className="mx-auto"
                         style={{
                           width: '100%',
-                          maxWidth: '1100px',
+                          maxWidth: '1400px',
                         }}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                       >
-                    <motion.div
-                      className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-xl shadow-2xl p-5 md:p-6 lg:p-8 backdrop-blur-xl"
-                      style={{
-                        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(185, 28, 58, 0.1)',
-                      }}
-                    >
-                      {/* 4 COLUMN GRID */}
-                      <div className="grid grid-cols-4 gap-3 md:gap-5 lg:gap-6">
+                        <motion.div
+                          className="bg-ovation-bg-secondary border border-ovation-border-primary rounded-2xl shadow-2xl p-8 md:p-10 lg:p-12 relative overflow-hidden"
+                          style={{
+                            boxShadow: '0 25px 70px rgba(0, 0, 0, 0.5), 0 0 50px rgba(185, 28, 58, 0.2)',
+                            backgroundColor: 'rgba(26, 26, 26, 0.98)',
+                            backdropFilter: 'blur(20px)',
+                          }}
+                        >
+                          {/* Solid background overlay to prevent text bleed-through */}
+                          <div className="absolute inset-0 bg-ovation-bg-secondary pointer-events-none" aria-hidden="true"></div>
+                          {/* Subtle gradient overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-ovation-brand-primary/8 via-transparent to-ovation-brand-accent/8 pointer-events-none" aria-hidden="true"></div>
+                          
+                          {/* 4 COLUMN GRID */}
+                          <div className="grid grid-cols-4 gap-8 md:gap-10 lg:gap-12 relative z-10">
                         {menuColumns.map((column, colIndex) => (
                           <motion.div
                             key={column.title}
@@ -227,18 +239,22 @@ export function MegaMenu() {
                             initial="hidden"
                             animate="visible"
                             custom={colIndex}
+                            className="relative"
                           >
                             {/* Column Header */}
-                            <motion.h4
-                              className="ovation-h4 text-ovation-text-primary font-semibold mb-4"
-                              whileHover={{ x: 4 }}
+                            <motion.div
+                              className="mb-6 pb-4 border-b border-ovation-border-primary/40"
+                              whileHover={{ x: 2 }}
                               transition={{ duration: 0.2 }}
                             >
-                              {column.title}
-                            </motion.h4>
+                              <h4 className="text-lg md:text-xl font-bold text-ovation-text-primary tracking-tight mb-3">
+                                {column.title}
+                              </h4>
+                              <div className="h-0.5 w-16 bg-gradient-to-r from-ovation-brand-primary via-ovation-brand-accent to-transparent"></div>
+                            </motion.div>
                             
                             {/* Column Links */}
-                            <ul className="space-y-2.5">
+                            <ul className="space-y-4">
                               {column.items.map((item, itemIndex) => (
                                 <motion.li
                                   key={item.label}
@@ -249,28 +265,53 @@ export function MegaMenu() {
                                 >
                                   <Link
                                     href={item.href}
-                                    className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-all duration-300 block group relative text-sm"
+                                    onClick={(e) => {
+                                      e.preventDefault()
+                                      scrollToSection(item.href.replace('#', ''))
+                                    }}
+                                    className="group relative flex items-center gap-3 text-ovation-text-secondary hover:text-ovation-text-primary transition-all duration-300 py-2.5 -mx-2 px-3 rounded-lg hover:bg-ovation-bg-primary/40 hover:shadow-md"
                                   >
-                                    <motion.span
-                                      className="relative inline-block"
-                                      whileHover={{ x: 4 }}
-                                      transition={{ duration: 0.2 }}
-                                    >
+                                    {item.icon && (
+                                      <motion.div
+                                        className="flex-shrink-0 w-5 h-5 flex items-center justify-center"
+                                        whileHover={{ scale: 1.15, rotate: 5 }}
+                                        transition={{ duration: 0.2 }}
+                                      >
+                                        <img
+                                          src={item.icon}
+                                          alt=""
+                                          width={20}
+                                          height={20}
+                                          className="opacity-80 group-hover:opacity-100 transition-opacity"
+                                        />
+                                      </motion.div>
+                                    )}
+                                    <span className="text-sm md:text-base font-medium leading-relaxed relative flex-1 tracking-wide">
                                       {item.label}
                                       <motion.span
-                                        className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ovation-brand-primary"
+                                        className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-ovation-brand-primary to-ovation-brand-accent"
                                         whileHover={{ width: '100%' }}
-                                        transition={{ duration: 0.3 }}
+                                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                                       />
-                                    </motion.span>
+                                    </span>
+                                    <motion.div
+                                      className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                                      initial={{ x: -5 }}
+                                      whileHover={{ x: 0 }}
+                                      transition={{ duration: 0.2 }}
+                                    >
+                                      <svg className="w-4 h-4 text-ovation-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                      </svg>
+                                    </motion.div>
                                   </Link>
                                 </motion.li>
                               ))}
                             </ul>
                           </motion.div>
                         ))}
-                      </div>
-                    </motion.div>
+                          </div>
+                        </motion.div>
                       </motion.div>
                     </div>
                   </div>
@@ -278,32 +319,45 @@ export function MegaMenu() {
               </AnimatePresence>
             </div>
 
-            <Link
-              href="#about"
+            <button
+              onClick={() => scrollToSection('hero')}
               className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group text-sm font-medium"
             >
               <span className="relative">
-                About
+                Home
                 <motion.span
                   className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ovation-brand-primary"
                   whileHover={{ width: '100%' }}
                   transition={{ duration: 0.3 }}
                 />
               </span>
-            </Link>
-            <Link
-              href="#contact"
+            </button>
+            <button
+              onClick={() => scrollToSection('about')}
               className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group text-sm font-medium"
             >
               <span className="relative">
-                Contact
+                About Us
                 <motion.span
                   className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ovation-brand-primary"
                   whileHover={{ width: '100%' }}
                   transition={{ duration: 0.3 }}
                 />
               </span>
-            </Link>
+            </button>
+            <button
+              onClick={() => scrollToSection('footer')}
+              className="text-ovation-text-primary hover:text-ovation-brand-primary transition-colors duration-300 relative group text-sm font-medium"
+            >
+              <span className="relative">
+                Careers
+                <motion.span
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-ovation-brand-primary"
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </span>
+            </button>
           </div>
 
           {/* CTA Button - Desktop */}
@@ -312,12 +366,12 @@ export function MegaMenu() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link
-                href="#contact"
+              <button
+                onClick={() => scrollToSection('footer')}
                 className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-ovation-brand-primary text-ovation-text-primary font-semibold hover:bg-ovation-brand-primary-hover transition-all duration-300 ovation-glow-red text-sm"
               >
-                Get Started
-              </Link>
+                CONTACT US
+              </button>
             </motion.div>
           </div>
 
@@ -358,12 +412,21 @@ export function MegaMenu() {
               className="lg:hidden overflow-hidden"
             >
               <div className="pt-4 pb-6 space-y-4 border-t border-ovation-border-primary mt-4">
+                <button
+                  onClick={() => {
+                    scrollToSection('hero')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="block w-full text-left text-ovation-text-primary hover:text-ovation-brand-primary transition-colors py-2"
+                >
+                  Home
+                </button>
                 <div>
                   <button
                     className="flex items-center justify-between w-full text-ovation-text-primary font-semibold py-2"
                     onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
                   >
-                    Solutions
+                    Services
                     <motion.div
                       animate={{ rotate: isMegaMenuOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -388,13 +451,24 @@ export function MegaMenu() {
                             <ul className="space-y-2">
                               {column.items.map((item) => (
                                 <li key={item.label}>
-                                  <Link
-                                    href={item.href}
-                                    className="text-ovation-text-secondary hover:text-ovation-brand-primary transition-colors text-sm block py-1"
-                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  <button
+                                    onClick={() => {
+                                      scrollToSection(item.href.replace('#', ''))
+                                      setIsMobileMenuOpen(false)
+                                    }}
+                                    className="w-full text-left text-ovation-text-secondary hover:text-ovation-brand-primary transition-colors text-sm block py-1 flex items-center gap-2"
                                   >
+                                    {item.icon && (
+                                      <img
+                                        src={item.icon}
+                                        alt=""
+                                        width={16}
+                                        height={16}
+                                        className="group-hover:scale-110 transition-transform"
+                                      />
+                                    )}
                                     {item.label}
-                                  </Link>
+                                  </button>
                                 </li>
                               ))}
                             </ul>
@@ -404,27 +478,33 @@ export function MegaMenu() {
                     )}
                   </AnimatePresence>
                 </div>
-                <Link
-                  href="#about"
-                  className="block text-ovation-text-primary hover:text-ovation-brand-primary transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                <button
+                  onClick={() => {
+                    scrollToSection('about')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="block w-full text-left text-ovation-text-primary hover:text-ovation-brand-primary transition-colors py-2"
                 >
-                  About
-                </Link>
-                <Link
-                  href="#contact"
-                  className="block text-ovation-text-primary hover:text-ovation-brand-primary transition-colors py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  About Us
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('footer')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="block w-full text-left text-ovation-text-primary hover:text-ovation-brand-primary transition-colors py-2"
                 >
-                  Contact
-                </Link>
-                <Link
-                  href="#contact"
+                  Careers
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('footer')
+                    setIsMobileMenuOpen(false)
+                  }}
                   className="block w-full text-center px-6 py-3 rounded-lg bg-ovation-brand-primary text-ovation-text-primary font-semibold hover:bg-ovation-brand-primary-hover transition-all duration-300 mt-4"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Get Started
-                </Link>
+                  CONTACT US
+                </button>
               </div>
             </motion.div>
           )}

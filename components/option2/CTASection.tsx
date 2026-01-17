@@ -5,10 +5,10 @@ import { OvationButton } from './OvationButton'
 import { CheckCircle2 } from 'lucide-react'
 
 const benefits = [
-  'Free consultation with our experts',
-  'Customized solutions for your needs',
-  'Proven track record of success',
-  'Ongoing support and partnership',
+  'Over 25 years of industry experience',
+  'Skilled professionals committed to excellence',
+  'Thousands of successful projects completed',
+  'Customized solutions tailored to your needs',
 ]
 
 export function CTASection() {
@@ -45,17 +45,17 @@ export function CTASection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Ready to Transform Your Workplace?
+                Get Started Today
               </motion.p>
               
               <motion.h2
-                className="text-ovation-text-primary mb-6"
+                className="ovation-h2 text-ovation-text-primary mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                Let&apos;s Build Something Great Together
+                Ready to Optimize Your IT Infrastructure?
               </motion.h2>
               
               <motion.p
@@ -65,7 +65,7 @@ export function CTASection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Partner with Ovation to create a workplace that empowers your team and drives your business forward.
+                Contact Ovation Workplace Services today to learn how we can help your business achieve its technology goals. Our experienced team is ready to provide the solutions and support you need.
               </motion.p>
             </div>
 
@@ -101,10 +101,10 @@ export function CTASection() {
               transition={{ duration: 0.8, delay: 0.9 }}
             >
               <OvationButton variant="primary" icon>
-                Schedule Consultation
+                Talk to us
               </OvationButton>
               <OvationButton variant="secondary">
-                Download Brochure
+                Learn More
               </OvationButton>
             </motion.div>
 
@@ -117,16 +117,10 @@ export function CTASection() {
               transition={{ duration: 0.8, delay: 1.1 }}
             >
               <p className="text-ovation-text-secondary mb-2">
-                Questions? Call us at{' '}
-                <a
-                  href="tel:1-800-OVATION"
-                  className="text-ovation-brand-primary hover:text-ovation-brand-primary-hover transition-colors"
-                >
-                  1-800-OVATION
-                </a>
+                Questions? Contact us to discuss your IT needs
               </p>
               <p className="text-ovation-text-tertiary text-sm">
-                Available Monday - Friday, 8AM - 6PM EST
+                We&apos;re here to help you achieve your technology goals
               </p>
             </motion.div>
           </motion.div>

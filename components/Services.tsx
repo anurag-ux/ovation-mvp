@@ -31,14 +31,14 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="bg-dark-surface py-20 md:py-32 relative overflow-hidden">
+    <section id="services" className="bg-dark-surface py-20 md:py-32 relative overflow-x-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20" aria-hidden="true">
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-red/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 overflow-x-hidden">
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-brand-red"></div>
@@ -51,7 +51,7 @@ export default function Services() {
         </div>
 
         {/* Service Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16" role="tablist" aria-label="Service categories">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-16 px-2 overflow-x-hidden" role="tablist" aria-label="Service categories">
           {Object.keys(services).map((service, index) => (
             <button
               key={service}
@@ -59,24 +59,26 @@ export default function Services() {
               role="tab"
               aria-selected={activeTab === service}
               aria-controls={`service-${service.toLowerCase().replace(/\s+/g, '-')}`}
-              className={`relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden group flex items-center gap-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-surface ${
+              className={`relative px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 overflow-hidden group flex items-center gap-2 min-h-[44px] flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-surface ${
                 activeTab === service
-                  ? 'bg-brand-red text-white shadow-lg shadow-brand-red/50 scale-105 glow-red'
-                  : 'bg-dark-card text-gray-300 border border-dark-border hover:border-brand-red/50 hover:text-white hover:scale-105'
+                  ? 'bg-brand-red text-white shadow-lg shadow-brand-red/50 sm:scale-105 glow-red'
+                  : 'bg-dark-card text-gray-300 border border-dark-border hover:border-brand-red/50 hover:text-white sm:hover:scale-105'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {activeTab === service && (
-                <Image
-                  src={services[service as keyof typeof services].icon}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="relative z-10 animate-float"
-                  aria-hidden="true"
-                />
-              )}
-              <span className="relative z-10">{service}</span>
+              <Image
+                src={services[service as keyof typeof services].icon}
+                alt=""
+                width={18}
+                height={18}
+                className={`relative z-10 flex-shrink-0 transition-opacity duration-300 ${
+                  activeTab === service 
+                    ? 'opacity-100 brightness-0 invert' 
+                    : 'opacity-70'
+                }`}
+                aria-hidden="true"
+              />
+              <span className="relative z-10 whitespace-nowrap">{service}</span>
               {activeTab === service && (
                 <span className="absolute inset-0 bg-gradient-to-r from-brand-red to-red-600"></span>
               )}
@@ -93,13 +95,12 @@ export default function Services() {
             className="text-white animate-fade-in-left"
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-gradient-to-br from-brand-red/20 to-transparent rounded-xl border border-brand-red/30">
+              <div className="p-3 bg-gradient-to-br from-brand-red/20 to-transparent rounded-xl border border-brand-red/30 flex-shrink-0">
                 <Image
                   src={services[activeTab as keyof typeof services].icon}
                   alt={`${activeTab} icon`}
                   width={48}
                   height={48}
-                  className="animate-float"
                 />
               </div>
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent relative inline-block">

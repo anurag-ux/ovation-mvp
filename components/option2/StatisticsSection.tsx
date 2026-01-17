@@ -12,28 +12,22 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    value: 15,
-    suffix: 'M+',
-    label: 'Square Feet Managed',
-    description: 'Of workspace under our care',
-  },
-  {
-    value: 98,
-    suffix: '%',
-    label: 'Client Retention',
-    description: 'Year-over-year satisfaction',
-  },
-  {
-    value: 500,
+    value: 2025,
     suffix: '+',
-    label: 'Active Clients',
-    description: 'Trust us with their facilities',
+    label: 'Individual Models Supported',
+    description: 'Comprehensive device support coverage',
   },
   {
-    value: 50,
+    value: 28140,
     suffix: '+',
-    label: 'Industry Awards',
-    description: 'For excellence and innovation',
+    label: 'Zip Codes with NBD or Better SLA offered',
+    description: 'Extensive service coverage nationwide',
+  },
+  {
+    value: 78405,
+    suffix: '+',
+    label: 'Successful Service Events',
+    description: 'Proven track record of excellence',
   },
 ]
 
@@ -87,7 +81,7 @@ function CountUpAnimation({ value, suffix }: { value: number; suffix: string }) 
 
   return (
     <div ref={ref} className="text-4xl md:text-5xl lg:text-6xl font-bold text-ovation-brand-primary">
-      {count}
+      {count.toLocaleString()}
       {suffix}
     </div>
   )
@@ -110,17 +104,17 @@ export function StatisticsSection() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-ovation-brand-primary font-semibold mb-4 tracking-wider uppercase text-xs md:text-sm">
-            Our Impact
+            Company Statistics
           </p>
           <h2 className="ovation-h2 text-ovation-text-primary mb-6">
-            Numbers That Speak for Themselves
+            Our Track Record
           </h2>
           <p className="text-ovation-text-secondary max-w-3xl mx-auto text-base md:text-lg">
-            Our track record demonstrates our commitment to excellence and the trust our clients place in us.
+            With over 25 years in the industry, we bring extensive knowledge and proven expertise to every project.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}

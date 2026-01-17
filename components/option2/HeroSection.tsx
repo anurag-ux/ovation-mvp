@@ -2,12 +2,25 @@
 
 import { motion } from 'framer-motion'
 import { OvationButton } from './OvationButton'
+import Image from 'next/image'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ovation-bg-primary via-ovation-bg-primary to-ovation-bg-secondary" />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 md:pt-28">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://admin.ovationwps.com/files/hero.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-20"
+          priority
+          sizes="100vw"
+        />
+      </div>
+      
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-ovation-bg-primary/95 via-ovation-bg-primary/90 to-ovation-bg-secondary/95" />
       
       {/* Animated background elements */}
       <motion.div
@@ -50,7 +63,7 @@ export function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Excellence in Workplace Services
+              Your Trusted Partner
             </motion.p>
             
             <motion.h1
@@ -59,7 +72,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Transform Your Workplace with Innovative Solutions
+              Your Trusted Partner for Comprehensive IT Solutions
             </motion.h1>
             
             <motion.p
@@ -68,7 +81,7 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              We deliver comprehensive facility management and workspace solutions that empower your business to thrive in the modern workplace.
+              Ovation Workplace Services is dedicated to providing exceptional IT solutions and support to businesses of all sizes. With our comprehensive range of services, experienced team, and commitment to excellence, we help organizations optimize their technology infrastructure and achieve their business goals.
             </motion.p>
 
             <motion.div
@@ -94,10 +107,10 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             {[
-              { value: '500+', label: 'Clients Served' },
-              { value: '25+', label: 'Years Experience' },
-              { value: '98%', label: 'Client Satisfaction' },
-              { value: '24/7', label: 'Support Available' },
+              { value: '10k+', label: 'Satisfied Customers' },
+              { value: '25+', label: 'Years of Experience' },
+              { value: '2025+', label: 'Individual Models Supported' },
+              { value: '28k+', label: 'Zip Codes with NBD or Better SLA' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
