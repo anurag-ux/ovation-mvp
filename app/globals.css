@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-bg text-white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+  
+  /* Focus styles for keyboard navigation */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-red ring-offset-2 ring-offset-dark-bg;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-red via-red-500 to-red-400;
+    background-size: 200% auto;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-dark-surface/80 border border-dark-border;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl;
+  }
+  
+  .premium-card {
+    @apply bg-gradient-to-br from-dark-card via-dark-surface to-dark-card border border-dark-border;
+    @apply hover:border-brand-red/50 hover:shadow-2xl hover:shadow-brand-red/20;
+    @apply transition-all duration-500;
+  }
+  
+  .premium-button {
+    @apply relative overflow-hidden;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-r before:from-brand-red before:to-red-600;
+    @apply before:translate-x-[-100%] hover:before:translate-x-0;
+    @apply before:transition-transform before:duration-500;
+  }
+  
+  /* Screen reader only - for accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  .sr-only:focus,
+  .sr-only:focus-visible {
+    position: absolute !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    z-index: 9999;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: absolute !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+  }
+  
+  /* Premium animations */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Parallax effect */
+  .parallax-slow {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Premium glow effects */
+  .glow-red {
+    box-shadow: 0 0 20px rgba(179, 9, 32, 0.3),
+                0 0 40px rgba(179, 9, 32, 0.2),
+                0 0 60px rgba(179, 9, 32, 0.1);
+  }
+  
+  .glow-red:hover {
+    box-shadow: 0 0 30px rgba(179, 9, 32, 0.5),
+                0 0 60px rgba(179, 9, 32, 0.3),
+                0 0 90px rgba(179, 9, 32, 0.2);
+  }
+  
+  /* Text reveal animation */
+  @keyframes text-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .text-reveal {
+    animation: text-reveal 0.8s ease-out forwards;
+  }
+  
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+  }
+  
+  /* Width grow animation for header underlines */
+  @keyframes width-grow {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+}
