@@ -1,14 +1,24 @@
-import Header from '@/components/Header'
-import Hero from '@/components/Hero'
-import CoreValues from '@/components/CoreValues'
-import Services from '@/components/Services'
-import WhyChooseUs from '@/components/WhyChooseUs'
-import Statistics from '@/components/Statistics'
-import Footer from '@/components/Footer'
-import ScrollProgress from '@/components/ScrollProgress'
+'use client'
+
+import { useEffect } from 'react'
+import MegaMenu from '@/components/mvp/option-1/MegaMenu'
+import Hero from '@/components/mvp/option-1/Hero'
+import CoreValues from '@/components/mvp/option-1/CoreValues'
+import Services from '@/components/mvp/option-1/Services'
+import WhyChooseUs from '@/components/mvp/option-1/WhyChooseUs'
+import Statistics from '@/components/mvp/option-1/Statistics'
+import Footer from '@/components/mvp/option-1/Footer'
+import ScrollProgress from '@/components/mvp/option-1/ScrollProgress'
 import Link from 'next/link'
 
 export default function Option1() {
+  useEffect(() => {
+    // Apply scrollbar styles to html element for Option 1
+    document.documentElement.setAttribute('data-page-option', '1')
+    return () => {
+      document.documentElement.removeAttribute('data-page-option')
+    }
+  }, [])
   return (
     <>
       {/* Back to Options Link */}
@@ -26,8 +36,8 @@ export default function Option1() {
       </div>
 
       <ScrollProgress />
-      <main id="main-content" className="min-h-screen">
-        <Header />
+      <main id="main-content" className="min-h-screen" data-option="1">
+        <MegaMenu />
         <Hero />
         <CoreValues />
         <Services />

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Animated Scrollbar for Option 3 */
+/* Custom Scrollbars for All Options */
 @layer utilities {
   @keyframes scrollbar-glow {
     0%, 100% {
@@ -13,31 +13,110 @@
     }
   }
 
-  /* Webkit browsers (Chrome, Safari, Edge) - Option 3 only */
-  [data-option="3"]::-webkit-scrollbar {
+  @keyframes scrollbar-glow-dark {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(179, 9, 32, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(179, 9, 32, 0.8);
+    }
+  }
+
+  /* ============================================
+     OPTION 1 - Dark Theme with Brand Red
+     ============================================ */
+  
+  /* Webkit browsers (Chrome, Safari, Edge) - Option 1 */
+  html[data-page-option="1"]::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  html[data-page-option="1"]::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+  }
+
+  html[data-page-option="1"]::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #b30920, #8a0719);
+    border-radius: 10px;
+    border: 2px solid #1a1a1a;
+    animation: scrollbar-glow-dark 2s ease-in-out infinite;
+  }
+
+  html[data-page-option="1"]::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #d40f29, #b30920);
+    box-shadow: 0 0 12px rgba(179, 9, 32, 0.8);
+  }
+
+  /* Firefox - Option 1 */
+  html[data-page-option="1"] {
+    scrollbar-width: thin;
+    scrollbar-color: #b30920 #1a1a1a;
+  }
+
+  /* ============================================
+     OPTION 2 - Dark Theme with Ovation Brand
+     ============================================ */
+
+  /* Webkit browsers (Chrome, Safari, Edge) - Option 2 */
+  html[data-page-option="2"]::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  html[data-page-option="2"]::-webkit-scrollbar-track {
+    background: #0A0A0A;
+    border-radius: 10px;
+  }
+
+  html[data-page-option="2"]::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #B91C3A, #8B1529);
+    border-radius: 10px;
+    border: 2px solid #0A0A0A;
+    animation: scrollbar-glow-dark 2s ease-in-out infinite;
+  }
+
+  html[data-page-option="2"]::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #D42147, #B91C3A);
+    box-shadow: 0 0 12px rgba(185, 28, 58, 0.8);
+  }
+
+  /* Firefox - Option 2 */
+  html[data-page-option="2"] {
+    scrollbar-width: thin;
+    scrollbar-color: #B91C3A #0A0A0A;
+  }
+
+  /* ============================================
+     OPTION 3 - Light Theme with Brand Red
+     ============================================ */
+
+  /* Webkit browsers (Chrome, Safari, Edge) - Option 3 */
+  html[data-page-option="3"]::-webkit-scrollbar {
     width: 12px;
     height: 12px;
   }
 
-  [data-option="3"]::-webkit-scrollbar-track {
+  html[data-page-option="3"]::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 10px;
   }
 
-  [data-option="3"]::-webkit-scrollbar-thumb {
+  html[data-page-option="3"]::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #b30920, #8a0719);
     border-radius: 10px;
     border: 2px solid #f1f1f1;
     animation: scrollbar-glow 2s ease-in-out infinite;
   }
 
-  [data-option="3"]::-webkit-scrollbar-thumb:hover {
+  html[data-page-option="3"]::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #8a0719, #b30920);
     box-shadow: 0 0 10px rgba(179, 9, 32, 0.5);
   }
 
-  /* Firefox - Option 3 only */
-  [data-option="3"] {
+  /* Firefox - Option 3 */
+  html[data-page-option="3"] {
     scrollbar-width: thin;
     scrollbar-color: #b30920 #f1f1f1;
   }

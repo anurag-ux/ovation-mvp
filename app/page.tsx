@@ -27,7 +27,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto px-4 sm:px-6">
           {/* Option 1 */}
           <Link
-            href="/options/1"
+            href="/mvp-options/option-1"
             className="group relative premium-card p-6 sm:p-7 md:p-8 rounded-xl md:rounded-2xl hover-lift transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-h-[280px] sm:min-h-[300px] flex flex-col"
             aria-label="View Option 1 - Modern Dark Theme Design"
           >
@@ -54,7 +54,7 @@ export default function Home() {
 
           {/* Option 2 */}
           <Link
-            href="/options/2"
+            href="/mvp-options/option-2"
             className="group relative premium-card p-6 sm:p-7 md:p-8 rounded-xl md:rounded-2xl hover-lift transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-h-[280px] sm:min-h-[300px] flex flex-col"
             aria-label="View Option 2 - Modern Design with Mega Menu"
           >
@@ -81,7 +81,7 @@ export default function Home() {
 
           {/* Option 3 */}
           <Link
-            href="/options/3"
+            href="/mvp-options/option-3"
             className="group relative premium-card p-6 sm:p-7 md:p-8 rounded-xl md:rounded-2xl hover-lift transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-h-[280px] sm:min-h-[300px] flex flex-col sm:col-span-2 md:col-span-1"
             aria-label="View Option 3 - Light Theme Artistic Design"
           >
