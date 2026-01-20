@@ -295,13 +295,14 @@ export function ServicesSection() {
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#b30920]/5 rounded-full blur-2xl" />
                     
-                    {/* Icon */}
-                    <div className="inline-flex items-center justify-center w-14 h-14 bg-[#b30920]/10 rounded-xl mb-3 flex-shrink-0">
+                    {/* Icon - Enhanced visibility */}
+                    <div className="inline-flex items-center justify-center w-14 h-14 bg-[#b30920] rounded-xl mb-3 flex-shrink-0 shadow-lg shadow-[#b30920]/30">
                       <Image
                         src={service.icon}
                         alt={`${service.title} icon`}
                         width={32}
                         height={32}
+                        className="brightness-0 invert"
                       />
                     </div>
 

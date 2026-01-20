@@ -3,17 +3,32 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  // Default to true (mobile-first) to ensure content is visible on initial render
+  const [isMobile, setIsMobile] = useState(true)
+  const [isClient, setIsClient] = useState(false)
+  
+  // Check for mobile on mount
+  useEffect(() => {
+    setIsClient(true)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  // Only apply scroll transforms on desktop for smoother mobile experience
+  // Don't apply any transforms until client-side to prevent hydration issues
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', (!isClient || isMobile) ? '0%' : '50%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, (!isClient || isMobile) ? 1 : 0])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -24,11 +39,14 @@ export function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50/30 pt-28 sm:pt-24 snap-start">
-      {/* Artistic Background Elements */}
+      {/* Artistic Background Elements - Simplified for mobile */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        {/* Geometric Shapes */}
+        {/* Geometric Shapes - Static on mobile, animated on desktop */}
+        <div
+          className="absolute top-20 right-20 w-72 h-72 bg-[#b30920]/5 rounded-full blur-3xl md:hidden"
+        />
         <motion.div
-          className="absolute top-20 right-20 w-72 h-72 bg-[#b30920]/5 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-72 h-72 bg-[#b30920]/5 rounded-full blur-3xl hidden md:block"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -40,8 +58,11 @@ export function HeroSection() {
             ease: 'easeInOut',
           }}
         />
+        <div
+          className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl md:hidden"
+        />
         <motion.div
-          className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl hidden md:block"
           animate={{
             scale: [1.2, 1, 1.2],
             x: [0, -50, 0],
@@ -64,12 +85,13 @@ export function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Content */}
+            {/* Left: Content - Optimized animations for mobile */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{ y, opacity }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              style={(!isClient || isMobile) ? undefined : { y, opacity }}
+              className="will-change-transform"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
