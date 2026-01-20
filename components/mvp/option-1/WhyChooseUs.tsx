@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Why <span className="text-gradient">Choose Us</span>
           </h2>

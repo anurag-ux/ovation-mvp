@@ -404,111 +404,125 @@ export default function MegaMenu() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Fixed overlay for better visibility */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="lg:hidden overflow-hidden mt-4 border-t border-dark-border pt-4 backdrop-blur-md bg-dark-bg/80 rounded-b-xl"
-            >
-              <div className="space-y-1 pb-4 max-h-[70vh] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                <button
-                  onClick={() => {
-                    scrollToSection('hero')
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
-                >
-                  Home
-                </button>
-                
-                {/* Services Dropdown */}
-                <div>
+            <>
+              {/* Dark overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="lg:hidden fixed inset-0 bg-black/50 z-40"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+              
+              {/* Menu panel */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                className="lg:hidden fixed left-0 right-0 top-[60px] z-50 mx-4 bg-[#0a0a0f] border border-dark-border rounded-2xl shadow-2xl shadow-black/50 max-h-[calc(100vh-80px)] flex flex-col"
+              >
+                {/* Scrollable content */}
+                <div className="flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden p-4 space-y-1">
                   <button
-                    className="flex items-center justify-between w-full px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
-                    onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                    onClick={() => {
+                      scrollToSection('hero')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
                   >
-                    Services
-                    <motion.div
-                      animate={{ rotate: isMegaMenuOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ChevronDown className="w-4 h-4" />
-                    </motion.div>
+                    Home
                   </button>
-                  <AnimatePresence>
-                    {isMegaMenuOpen && (
+                  
+                  {/* Services Dropdown */}
+                  <div>
+                    <button
+                      className="flex items-center justify-between w-full px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
+                      onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                    >
+                      Services
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        animate={{ rotate: isMegaMenuOpen ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
-                        className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-brand-red/30 ml-4"
                       >
-                        {menuColumns.map((column) => (
-                          <div key={column.title} className="pt-2">
-                            <h5 className="text-white font-semibold mb-3 text-sm flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-brand-red rounded-full"></span>
-                              {column.title}
-                            </h5>
-                            <ul className="space-y-1 pl-3">
-                              {column.items.map((item) => (
-                                <li key={item.label}>
-                                  <button
-                                    onClick={() => {
-                                      scrollToSection(item.href.replace('#', ''))
-                                      setIsMobileMenuOpen(false)
-                                      setIsMegaMenuOpen(false)
-                                    }}
-                                    className="w-full text-left flex items-center gap-2 text-gray-400 hover:text-brand-red transition-colors py-2.5 text-sm rounded-lg hover:bg-dark-card/30 px-3 -ml-3"
-                                  >
-                                    {item.icon && (
-                                      // eslint-disable-next-line @next/next/no-img-element
-                                      <img
-                                        src={item.icon}
-                                        alt=""
-                                        width={18}
-                                        height={18}
-                                        className="opacity-80"
-                                      />
-                                    )}
-                                    {item.label}
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                        <ChevronDown className="w-4 h-4" />
                       </motion.div>
-                    )}
-                  </AnimatePresence>
+                    </button>
+                    <AnimatePresence>
+                      {isMegaMenuOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-brand-red/30 ml-4"
+                        >
+                          {menuColumns.map((column) => (
+                            <div key={column.title} className="pt-2">
+                              <h5 className="text-white font-semibold mb-3 text-sm flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-brand-red rounded-full"></span>
+                                {column.title}
+                              </h5>
+                              <ul className="space-y-1 pl-3">
+                                {column.items.map((item) => (
+                                  <li key={item.label}>
+                                    <button
+                                      onClick={() => {
+                                        scrollToSection(item.href.replace('#', ''))
+                                        setIsMobileMenuOpen(false)
+                                        setIsMegaMenuOpen(false)
+                                      }}
+                                      className="w-full text-left flex items-center gap-2 text-gray-400 hover:text-brand-red transition-colors py-2.5 text-sm rounded-lg hover:bg-dark-card/30 px-3 -ml-3"
+                                    >
+                                      {item.icon && (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img
+                                          src={item.icon}
+                                          alt=""
+                                          width={18}
+                                          height={18}
+                                          className="opacity-80"
+                                        />
+                                      )}
+                                      {item.label}
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      scrollToSection('about')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    About Us
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      scrollToSection('footer')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
+                  >
+                    Careers
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => {
-                    scrollToSection('about')
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
-                >
-                  About Us
-                </button>
-
-                <button
-                  onClick={() => {
-                    scrollToSection('footer')
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="block w-full text-left px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
-                >
-                  Careers
-                </button>
-
-                {/* Mobile CTA Button */}
-                <div className="pt-4 px-4">
+                {/* Fixed CTA Button at bottom */}
+                <div className="flex-shrink-0 p-4 border-t border-dark-border bg-[#0a0a0f]">
                   <button
                     onClick={() => {
                       scrollToSection('footer')
@@ -519,8 +533,8 @@ export default function MegaMenu() {
                     CONTACT US
                   </button>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>

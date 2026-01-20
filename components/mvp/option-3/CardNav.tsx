@@ -3,6 +3,7 @@
 import { useState, useRef, useLayoutEffect, useCallback, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { GoArrowUpRight } from 'react-icons/go'
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -336,66 +337,127 @@ export function CardNav({
             </div>
           </div>
 
-          {/* Expandable Content Area - with scroll on mobile (hidden scrollbar) */}
+          {/* Expandable Content Area */}
           <div
             ref={contentRef}
-            className="px-4 sm:px-6 pb-6 opacity-0 invisible max-h-[70vh] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="opacity-0 invisible flex flex-col"
           >
-            {/* Cards Grid - Desktop: Row, Mobile: Stack */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-              {items.map((card, index) => (
-                <div
-                  key={card.title}
-                  ref={(el) => {
-                    if (el) cardsRef.current[index] = el
-                  }}
-                  className={`${card.bgColor} rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group`}
-                >
-                  {/* Card Title */}
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-900/10">
-                    {card.title}
-                  </h3>
+            {/* Scrollable Cards Area - Mobile only scrolls this part */}
+            <div className="px-4 sm:px-6 max-h-[50vh] md:max-h-none overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              {/* Cards Grid - Desktop: Row, Mobile: Stack */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+                {items.map((card, index) => (
+                  <div
+                    key={card.title}
+                    ref={(el) => {
+                      if (el) cardsRef.current[index] = el
+                    }}
+                    className={`${card.bgColor} rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group`}
+                  >
+                    {/* Card Title */}
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-900/10">
+                      {card.title}
+                    </h3>
 
-                  {/* Sub-links */}
-                  <ul className="space-y-2">
-                    {card.items.map((item) => (
-                      <li key={item.label}>
-                        <button
-                          onClick={() => scrollToSection(item.href)}
-                          className="w-full flex items-center justify-between text-gray-700 hover:text-[#b30920] transition-colors py-1.5 group/item text-left"
-                        >
-                          <span className="flex items-center gap-2 text-sm font-medium">
-                            {item.icon && (
-                              // eslint-disable-next-line @next/next/no-img-element
-                              <img
-                                src={item.icon}
-                                alt=""
-                                width={16}
-                                height={16}
-                                className="opacity-70 group-hover/item:opacity-100 transition-opacity"
-                              />
-                            )}
-                            {item.label}
-                          </span>
-                          <GoArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                    {/* Sub-links */}
+                    <ul className="space-y-2">
+                      {card.items.map((item) => (
+                        <li key={item.label}>
+                          <button
+                            onClick={() => scrollToSection(item.href)}
+                            className="w-full flex items-center justify-between text-gray-700 hover:text-[#b30920] transition-colors py-1.5 group/item text-left"
+                          >
+                            <span className="flex items-center gap-2 text-sm font-medium">
+                              {item.icon && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={item.icon}
+                                  alt=""
+                                  width={16}
+                                  height={16}
+                                  className="opacity-70 group-hover/item:opacity-100 transition-opacity"
+                                />
+                              )}
+                              {item.label}
+                            </span>
+                            <GoArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Mobile CTA Button */}
-            <div className="md:hidden mt-6">
+            {/* Fixed Bottom Area - Mobile Only */}
+            <div className="md:hidden px-4 pt-4 pb-6 bg-white border-t border-gray-100 mt-4">
+              {/* Get Started Button */}
               <button
                 onClick={() => scrollToSection('#footer')}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#b30920] text-white rounded-lg font-semibold text-sm hover:bg-[#8a0719] transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#b30920] text-white rounded-lg font-semibold text-sm hover:bg-[#8a0719] transition-all duration-300 shadow-lg shadow-[#b30920]/20"
               >
                 Get Started
                 <GoArrowUpRight className="w-4 h-4" />
               </button>
+
+              {/* Follow Us Section */}
+              <div className="mt-5">
+                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider text-center mb-3">
+                  Follow Us
+                </h4>
+                <div className="flex items-center justify-center gap-3">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b30920] hover:text-white transition-all duration-300"
+                    aria-label="Facebook"
+                  >
+                    <FaFacebookF className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b30920] hover:text-white transition-all duration-300"
+                    aria-label="Twitter"
+                  >
+                    <FaTwitter className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b30920] hover:text-white transition-all duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedinIn className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b30920] hover:text-white transition-all duration-300"
+                    aria-label="Instagram"
+                  >
+                    <FaInstagram className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b30920] hover:text-white transition-all duration-300"
+                    aria-label="YouTube"
+                  >
+                    <FaYoutube className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
             </div>
+
+            {/* Desktop bottom padding */}
+            <div className="hidden md:block pb-6" />
           </div>
         </div>
       </div>
