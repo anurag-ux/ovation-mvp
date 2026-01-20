@@ -68,7 +68,9 @@ export const defaultNavItems: NavCardItem[] = [
 ]
 
 const CLOSED_HEIGHT = 60
-const ANIMATION_DURATION = 0.5
+// Faster animations for smoother mobile experience
+const ANIMATION_DURATION = 0.35
+const MOBILE_ANIMATION_DURATION = 0.25
 
 export function CardNav({ 
   items = defaultNavItems, 
@@ -76,10 +78,19 @@ export function CardNav({
   logoAlt = 'Ovation Workplace Services'
 }: CardNavProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement[]>([])
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
+  
+  // Check for mobile on mount
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Calculate the true height of content for animation
   const calculateHeight = useCallback((): number => {
@@ -110,7 +121,7 @@ export function CardNav({
     return height + CLOSED_HEIGHT + 24 // Add padding
   }, [])
 
-  // GSAP Animation Logic
+  // GSAP Animation Logic - Optimized for mobile
   useLayoutEffect(() => {
     if (!containerRef.current || !contentRef.current) return
 
@@ -122,59 +133,72 @@ export function CardNav({
     const container = containerRef.current
     const content = contentRef.current
     const cards = cardsRef.current.filter(Boolean)
+    
+    // Use faster animations on mobile
+    const duration = isMobile ? MOBILE_ANIMATION_DURATION : ANIMATION_DURATION
+    const cardDuration = isMobile ? 0.2 : 0.4
+    const staggerDelay = isMobile ? 0.04 : 0.08
 
     if (isOpen) {
       // Calculate target height
       const targetHeight = calculateHeight()
 
-      // Create opening timeline
-      const tl = gsap.timeline()
+      // Create opening timeline with optimized settings
+      const tl = gsap.timeline({
+        defaults: {
+          force3D: true, // GPU acceleration
+        }
+      })
 
       // First, expand the container
       tl.to(container, {
         height: targetHeight,
-        duration: ANIMATION_DURATION,
-        ease: 'power3.out',
+        duration: duration,
+        ease: 'power2.out', // Smoother easing
       })
 
       // Show content
       tl.to(content, {
         opacity: 1,
         visibility: 'visible',
-        duration: 0.1,
+        duration: 0.05,
       }, '<')
 
-      // Stagger animate cards
+      // Stagger animate cards - simpler animation on mobile
       tl.fromTo(
         cards,
         {
           opacity: 0,
-          y: 30,
-          scale: 0.95,
+          y: isMobile ? 15 : 30,
+          scale: isMobile ? 1 : 0.95,
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.4,
-          stagger: 0.08,
+          duration: cardDuration,
+          stagger: staggerDelay,
           ease: 'power2.out',
         },
-        '-=0.3'
+        isMobile ? '-=0.15' : '-=0.3'
       )
 
       timelineRef.current = tl
     } else {
       // Create closing timeline
-      const tl = gsap.timeline()
+      const tl = gsap.timeline({
+        defaults: {
+          force3D: true,
+        }
+      })
 
-      // Fade out cards first
+      // Fade out cards first - faster on mobile
       tl.to(cards, {
         opacity: 0,
-        y: -20,
-        scale: 0.95,
-        duration: 0.25,
-        stagger: 0.03,
+        y: isMobile ? -10 : -20,
+        scale: isMobile ? 1 : 0.95,
+        duration: isMobile ? 0.15 : 0.25,
+        stagger: isMobile ? 0.02 : 0.03,
         ease: 'power2.in',
       })
 
@@ -182,15 +206,15 @@ export function CardNav({
       tl.to(content, {
         opacity: 0,
         visibility: 'hidden',
-        duration: 0.1,
+        duration: 0.05,
       })
 
       // Collapse container
       tl.to(container, {
         height: CLOSED_HEIGHT,
-        duration: ANIMATION_DURATION * 0.8,
-        ease: 'power3.inOut',
-      }, '-=0.1')
+        duration: duration * 0.8,
+        ease: 'power2.inOut',
+      }, '-=0.05')
 
       timelineRef.current = tl
     }
@@ -200,7 +224,7 @@ export function CardNav({
         timelineRef.current.kill()
       }
     }
-  }, [isOpen, calculateHeight])
+  }, [isOpen, calculateHeight, isMobile])
 
   const scrollToSection = (href: string) => {
     const id = href.replace('#', '')
@@ -257,14 +281,14 @@ export function CardNav({
             style={{ height: CLOSED_HEIGHT }}
           >
             {/* Logo - Using Option 2's logo */}
-            <Link href="/" className="flex items-center group">
-              <div className="relative h-8 sm:h-10 w-auto">
+            <Link href="/" className="flex items-center group flex-shrink-0">
+              <div className="relative h-8 sm:h-10 w-[140px] sm:w-[180px]">
                 <Image
                   src={logoSrc}
                   alt={logoAlt}
                   width={180}
                   height={50}
-                  className="h-8 sm:h-10 w-auto object-contain"
+                  className="h-8 sm:h-10 w-auto object-contain object-left"
                   priority
                 />
               </div>

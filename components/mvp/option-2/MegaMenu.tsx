@@ -49,7 +49,9 @@ const menuColumns: MenuColumn[] = [
 export function MegaMenu() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const mobileServicesRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const scrollToSection = (sectionId: string) => {
@@ -58,8 +60,16 @@ export function MegaMenu() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       setIsMobileMenuOpen(false)
       setIsMegaMenuOpen(false)
+      setIsMobileServicesOpen(false)
     }
   }
+  
+  // Reset mobile services accordion when mobile menu closes
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      setIsMobileServicesOpen(false)
+    }
+  }, [isMobileMenuOpen])
 
   // Close menu on outside click
   useEffect(() => {
@@ -160,16 +170,18 @@ export function MegaMenu() {
     >
       <nav className="ovation-container py-3 md:py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logos/ovation-logo-option2.png"
-              alt="Ovation Workplace Services"
-              width={180}
-              height={50}
-              className="h-10 md:h-12 w-auto"
-              priority
-            />
+          {/* Logo - Fixed position to prevent shifting */}
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <div className="relative h-10 md:h-12 w-[140px] md:w-[180px]">
+              <Image
+                src="/logos/ovation-logo-option2.png"
+                alt="Ovation Workplace Services"
+                width={180}
+                height={50}
+                className="h-10 md:h-12 w-auto object-contain object-left"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -421,21 +433,21 @@ export function MegaMenu() {
                 >
                   Home
                 </button>
-                <div>
+                <div ref={mobileServicesRef}>
                   <button
                     className="flex items-center justify-between w-full text-ovation-text-primary font-semibold py-2"
-                    onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                   >
                     Services
                     <motion.div
-                      animate={{ rotate: isMegaMenuOpen ? 180 : 0 }}
+                      animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
                       <ChevronDown className="w-4 h-4" />
                     </motion.div>
                   </button>
                   <AnimatePresence>
-                    {isMegaMenuOpen && (
+                    {isMobileServicesOpen && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
@@ -455,6 +467,7 @@ export function MegaMenu() {
                                     onClick={() => {
                                       scrollToSection(item.href.replace('#', ''))
                                       setIsMobileMenuOpen(false)
+                                      setIsMobileServicesOpen(false)
                                     }}
                                     className="w-full text-left text-ovation-text-secondary hover:text-ovation-brand-primary transition-colors text-sm block py-1 flex items-center gap-2"
                                   >
