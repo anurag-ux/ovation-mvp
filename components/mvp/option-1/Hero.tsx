@@ -146,7 +146,7 @@ export default function Hero() {
                 className="inline-block w-[3px] h-[0.65em] bg-brand-red align-middle mx-0.5"
                 style={{ animation: 'blink 1s ease-in-out infinite' }}
               ></span>
-              <span className="text-white">Partner</span>
+              <span className="text-white"> Partner</span>
             </span>
             <span className="block mb-2 md:mb-3">
               <span className="text-white">for Comprehensive </span>

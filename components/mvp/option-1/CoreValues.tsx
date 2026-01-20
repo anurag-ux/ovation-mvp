@@ -9,17 +9,22 @@ export default function CoreValues() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index') || '0')
             setTimeout(() => {
-              setVisibleCards((prev) => [...prev, index])
-            }, index * 200)
+              setVisibleCards((prev) => {
+                if (prev.includes(index)) return prev
+                return [...prev, index]
+              })
+            }, index * 150)
+            // Unobserve after first intersection to prevent re-triggering
+            obs.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.2, rootMargin: '50px' }
     )
 
     const cards = sectionRef.current?.querySelectorAll('[data-index]')
@@ -61,7 +66,7 @@ export default function CoreValues() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 bg-brand-red/10 border border-brand-red/30 rounded-full mb-6">
             <p className="text-brand-red text-xs uppercase tracking-widest font-semibold">Our Values</p>
           </div>
@@ -78,10 +83,11 @@ export default function CoreValues() {
             <div
               key={index}
               data-index={index}
-              className={`group premium-card p-8 rounded-2xl hover-lift ${
-                visibleCards.includes(index) ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+              className={`group premium-card p-8 rounded-2xl hover-lift transition-all duration-700 ease-out ${
+                visibleCards.includes(index) 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
               }`}
-              style={{ animationDelay: `${index * 200}ms` }}
               tabIndex={0}
               role="article"
               aria-label={value.title}
