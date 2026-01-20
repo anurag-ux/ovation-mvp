@@ -54,30 +54,30 @@ export default function Footer() {
             <div className="space-y-4 text-gray-400">
               <a
                 href="tel:+19088016897"
-                className="flex items-center gap-3 group hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105"
+                className="flex items-center gap-3 group hover:text-brand-red active:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105 active:scale-105"
                 aria-label="Call us at +1 908-801-6897"
               >
-                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-hover:scale-110 transition-all duration-300">
+                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-active:border-brand-red group-hover:scale-110 group-active:scale-110 transition-all duration-300">
                   <Image src="/icons/call.svg" alt="" width={16} height={16} aria-hidden="true" />
                 </div>
                 <span>+1 908-801-6897</span>
               </a>
               <a
                 href="mailto:HR@ovationwps.com"
-                className="flex items-center gap-3 group hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105"
+                className="flex items-center gap-3 group hover:text-brand-red active:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105 active:scale-105"
                 aria-label="Email HR at HR@ovationwps.com"
               >
-                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-hover:scale-110 transition-all duration-300">
+                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-active:border-brand-red group-hover:scale-110 group-active:scale-110 transition-all duration-300">
                   <Image src="/icons/mail.svg" alt="" width={16} height={16} aria-hidden="true" />
                 </div>
                 <span>HR@ovationwps.com</span>
               </a>
               <a
                 href="mailto:Sales@ovationwps.com"
-                className="flex items-center gap-3 group hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105"
+                className="flex items-center gap-3 group hover:text-brand-red active:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105 active:scale-105"
                 aria-label="Email Sales at Sales@ovationwps.com"
               >
-                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-hover:scale-110 transition-all duration-300">
+                <div className="p-2 bg-dark-card rounded-lg border border-dark-border group-hover:border-brand-red group-active:border-brand-red group-hover:scale-110 group-active:scale-110 transition-all duration-300">
                   <Image src="/icons/mail.svg" alt="" width={16} height={16} aria-hidden="true" />
                 </div>
                 <span>Sales@ovationwps.com</span>
@@ -92,11 +92,11 @@ export default function Footer() {
               <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-brand-red to-transparent"></span>
             </h3>
             <ul className="space-y-3" role="list">
-              {['Digital Workplace', 'Hybrid Cloud Services', 'NextGen Network', 'Cybersecurity'].map((service, index) => (
+              {['Digital Workplace', 'Hybrid Cloud Services', 'NextGen Network', 'Cybersecurity'].map((service) => (
                 <li key={service}>
                   <a
                     href="#services"
-                    className="group flex items-center gap-3 text-gray-400 hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105"
+                    className="group flex items-center gap-3 text-gray-400 hover:text-brand-red active:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 min-h-[44px] hover:scale-105 active:scale-105"
                     aria-label={`Learn more about ${service}`}
                   >
                     <Image
@@ -104,10 +104,10 @@ export default function Footer() {
                       alt=""
                       width={16}
                       height={16}
-                      className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      className="opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-2 group-hover:translate-x-0 group-active:translate-x-0 transition-all"
                       aria-hidden="true"
                     />
-                    <span className="group-hover:translate-x-2 transition-transform">{service}</span>
+                    <span className="group-hover:translate-x-2 group-active:translate-x-2 transition-transform">{service}</span>
                   </a>
                 </li>
               ))}
@@ -133,7 +133,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href="#"
-                    className="group flex items-center gap-3 text-gray-400 hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 text-sm min-h-[44px] hover:scale-105"
+                    className="group flex items-center gap-3 text-gray-400 hover:text-brand-red active:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded p-1 -m-1 text-sm min-h-[44px] hover:scale-105 active:scale-105"
                     aria-label={`View ${item}`}
                   >
                     <Image
@@ -141,10 +141,10 @@ export default function Footer() {
                       alt=""
                       width={16}
                       height={16}
-                      className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                      className="opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-2 group-hover:translate-x-0 group-active:translate-x-0 transition-all"
                       aria-hidden="true"
                     />
-                    <span className="group-hover:translate-x-2 transition-transform">{item}</span>
+                    <span className="group-hover:translate-x-2 group-active:translate-x-2 transition-transform">{item}</span>
                   </a>
                 </li>
               ))}
@@ -164,7 +164,7 @@ export default function Footer() {
                   href={social.href}
                   target={social.target}
                   rel={social.rel}
-                  className="p-3 bg-dark-card rounded-lg border border-dark-border text-gray-400 hover:text-brand-red hover:border-brand-red hover:scale-125 hover:rotate-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-w-[44px] min-h-[44px] flex items-center justify-center glow-red"
+                  className="p-3 bg-dark-card rounded-lg border border-dark-border text-gray-400 hover:text-brand-red active:text-brand-red hover:border-brand-red active:border-brand-red hover:scale-125 active:scale-110 hover:rotate-12 active:rotate-6 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg min-w-[44px] min-h-[44px] flex items-center justify-center glow-red"
                   aria-label={social.alt}
                 >
                   <Image
@@ -172,7 +172,7 @@ export default function Footer() {
                     alt=""
                     width={20}
                     height={20}
-                    className="filter brightness-0 invert opacity-60 hover:opacity-100 transition-opacity"
+                    className="filter brightness-0 invert opacity-60 group-hover:opacity-100 group-active:opacity-100 transition-opacity"
                     aria-hidden="true"
                   />
                 </a>
@@ -182,7 +182,7 @@ export default function Footer() {
               {certificates.map((cert, index) => (
                 <div
                   key={index}
-                  className="relative w-20 h-20 bg-dark-card border border-dark-border rounded-lg hover:border-brand-red transition-all duration-300 cursor-pointer overflow-hidden group focus-within:ring-2 focus-within:ring-brand-red focus-within:ring-offset-2 focus-within:ring-offset-dark-bg hover:scale-110"
+                  className="relative w-20 h-20 bg-dark-card border border-dark-border rounded-lg hover:border-brand-red active:border-brand-red transition-all duration-300 cursor-pointer overflow-hidden group focus-within:ring-2 focus-within:ring-brand-red focus-within:ring-offset-2 focus-within:ring-offset-dark-bg hover:scale-110 active:scale-105"
                   tabIndex={0}
                   role="img"
                   aria-label={cert.alt}
@@ -191,7 +191,7 @@ export default function Footer() {
                     src={cert.icon}
                     alt={cert.alt}
                     fill
-                    className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
+                    className="object-contain p-2 group-hover:scale-110 group-active:scale-105 transition-transform duration-300"
                   />
                 </div>
               ))}

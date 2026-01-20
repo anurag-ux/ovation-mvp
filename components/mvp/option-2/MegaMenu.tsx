@@ -411,7 +411,7 @@ export function MegaMenu() {
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               className="lg:hidden overflow-hidden"
             >
-              <div className="pt-4 pb-6 space-y-4 border-t border-ovation-border-primary mt-4">
+              <div className="pt-4 pb-6 space-y-4 border-t border-ovation-border-primary mt-4 max-h-[70vh] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 <button
                   onClick={() => {
                     scrollToSection('hero')

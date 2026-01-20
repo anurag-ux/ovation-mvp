@@ -7,10 +7,54 @@ import Image from 'next/image'
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoaded, setIsLoaded] = useState(false)
+  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const words = ['Trusted', 'Reliable', 'Growth', 'Dedicated', 'Strategic']
 
   useEffect(() => {
     setIsLoaded(true)
+    setDisplayText(words[0])
   }, [])
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex]
+    const typeSpeed = 70
+    const deleteSpeed = 40
+    const pauseBeforeDelete = 1800
+    const pauseBeforeType = 250
+
+    let timeout: NodeJS.Timeout
+
+    if (!isDeleting) {
+      // Typing
+      if (displayText.length < currentWord.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentWord.slice(0, displayText.length + 1))
+        }, typeSpeed)
+      } else {
+        // Word complete, pause then start deleting
+        timeout = setTimeout(() => {
+          setIsDeleting(true)
+        }, pauseBeforeDelete)
+      }
+    } else {
+      // Deleting
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1))
+        }, deleteSpeed)
+      } else {
+        // Deletion complete, move to next word
+        setIsDeleting(false)
+        setCurrentWordIndex((prev) => (prev + 1) % words.length)
+        timeout = setTimeout(() => {}, pauseBeforeType)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [displayText, isDeleting, currentWordIndex, words])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -97,7 +141,12 @@ export default function Hero() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 leading-[1.1] text-reveal" style={{ animationDelay: '0.2s' }}>
             <span className="block mb-2 md:mb-3">
               <span className="text-white">Your </span>
-              <span className="text-gradient animate-glow">Trusted Partner</span>
+              <span className="text-gradient animate-glow">{displayText}</span>
+              <span 
+                className="inline-block w-[3px] h-[0.65em] bg-brand-red align-middle mx-0.5"
+                style={{ animation: 'blink 1s ease-in-out infinite' }}
+              ></span>
+              <span className="text-white">Partner</span>
             </span>
             <span className="block mb-2 md:mb-3">
               <span className="text-white">for Comprehensive </span>

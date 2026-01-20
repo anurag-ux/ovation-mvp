@@ -375,17 +375,33 @@ export default function MegaMenu() {
               <span className="relative z-10">CONTACT US</span>
               <span className="absolute inset-0 bg-gradient-to-r from-brand-red to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </motion.button>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden text-white p-2 hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded-lg hover:bg-dark-card/50 hover:scale-110"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X size={24} className="animate-fade-in" /> : <Menu size={24} />}
-            </button>
           </div>
+
+          {/* Mobile Menu Button - Outside the hidden lg:flex container so it's visible on mobile */}
+          <button
+            className="lg:hidden text-white p-2 hover:text-brand-red transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-dark-bg rounded-lg hover:bg-dark-card/50 hover:scale-110"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? (
+              <motion.div
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X size={24} />
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu size={24} />
+              </motion.div>
+            )}
+          </button>
         </div>
 
         {/* Mobile Menu */}
@@ -396,9 +412,9 @@ export default function MegaMenu() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="lg:hidden overflow-hidden mt-4 pb-4 border-t border-dark-border pt-4 backdrop-blur-md bg-dark-bg/50 rounded-b-xl"
+              className="lg:hidden overflow-hidden mt-4 border-t border-dark-border pt-4 backdrop-blur-md bg-dark-bg/80 rounded-b-xl"
             >
-              <div className="space-y-4">
+              <div className="space-y-1 pb-4 max-h-[70vh] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 <button
                   onClick={() => {
                     scrollToSection('hero')
@@ -409,6 +425,7 @@ export default function MegaMenu() {
                   Home
                 </button>
                 
+                {/* Services Dropdown */}
                 <div>
                   <button
                     className="flex items-center justify-between w-full px-4 py-3.5 text-gray-300 hover:text-brand-red hover:bg-dark-card/50 rounded-lg transition-all duration-200 font-medium"
@@ -429,23 +446,24 @@ export default function MegaMenu() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="overflow-hidden pl-4 mt-2 space-y-4"
+                        className="overflow-hidden pl-4 mt-2 space-y-3 border-l-2 border-brand-red/30 ml-4"
                       >
                         {menuColumns.map((column) => (
                           <div key={column.title} className="pt-2">
-                            <h5 className="text-white font-semibold mb-2 text-sm">
+                            <h5 className="text-white font-semibold mb-3 text-sm flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 bg-brand-red rounded-full"></span>
                               {column.title}
                             </h5>
-                            <ul className="space-y-2">
+                            <ul className="space-y-1 pl-3">
                               {column.items.map((item) => (
                                 <li key={item.label}>
-                                  <Link
-                                    href={item.href}
-                                    onClick={(e) => {
-                                      e.preventDefault()
+                                  <button
+                                    onClick={() => {
                                       scrollToSection(item.href.replace('#', ''))
+                                      setIsMobileMenuOpen(false)
+                                      setIsMegaMenuOpen(false)
                                     }}
-                                    className="flex items-center gap-2 text-gray-400 hover:text-brand-red transition-colors py-2 text-sm"
+                                    className="w-full text-left flex items-center gap-2 text-gray-400 hover:text-brand-red transition-colors py-2.5 text-sm rounded-lg hover:bg-dark-card/30 px-3 -ml-3"
                                   >
                                     {item.icon && (
                                       // eslint-disable-next-line @next/next/no-img-element
@@ -454,10 +472,11 @@ export default function MegaMenu() {
                                         alt=""
                                         width={18}
                                         height={18}
+                                        className="opacity-80"
                                       />
                                     )}
                                     {item.label}
-                                  </Link>
+                                  </button>
                                 </li>
                               ))}
                             </ul>
@@ -488,15 +507,18 @@ export default function MegaMenu() {
                   Careers
                 </button>
 
-                <button
-                  onClick={() => {
-                    scrollToSection('footer')
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="w-full mt-4 px-4 py-3.5 bg-brand-red text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
-                  CONTACT US
-                </button>
+                {/* Mobile CTA Button */}
+                <div className="pt-4 px-4">
+                  <button
+                    onClick={() => {
+                      scrollToSection('footer')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="w-full py-3.5 bg-brand-red text-white rounded-lg font-semibold hover:bg-red-700 transition-colors glow-red"
+                  >
+                    CONTACT US
+                  </button>
+                </div>
               </div>
             </motion.div>
           )}

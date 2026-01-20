@@ -23,7 +23,7 @@ export function HeroSection() {
   }
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50/30 pt-20 snap-start">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50/30 pt-28 sm:pt-24 snap-start">
       {/* Artistic Background Elements */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         {/* Geometric Shapes */}
