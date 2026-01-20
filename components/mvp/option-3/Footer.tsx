@@ -2,6 +2,16 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa'
+
+// Social links
+const socialLinks = [
+  { icon: FaFacebookF, href: 'https://facebook.com/ovationwps', label: 'Facebook', color: 'hover:bg-blue-600' },
+  { icon: FaTwitter, href: 'https://twitter.com/ovationwps', label: 'Twitter', color: 'hover:bg-sky-500' },
+  { icon: FaLinkedinIn, href: 'https://linkedin.com/company/ovationwps', label: 'LinkedIn', color: 'hover:bg-blue-700' },
+  { icon: FaInstagram, href: 'https://instagram.com/ovationwps', label: 'Instagram', color: 'hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500' },
+  { icon: FaYoutube, href: 'https://youtube.com/ovationwps', label: 'YouTube', color: 'hover:bg-red-600' },
+]
 
 export function Footer() {
   return (
@@ -11,19 +21,38 @@ export function Footer() {
           {/* Company Info */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="relative w-10 h-10">
+              <div className="relative h-10 w-auto">
                 <Image
-                  src="https://www.ovationwps.com/Ovationwps.svg"
+                  src="/logos/ovation-logo-option2.png"
                   alt="Ovation Workplace Services"
-                  fill
-                  className="object-contain brightness-0 invert"
+                  width={180}
+                  height={50}
+                  className="h-10 w-auto object-contain brightness-0 invert"
                 />
               </div>
-              <span className="text-xl font-bold text-white">Ovation WPS</span>
             </Link>
-            <p className="text-gray-400 mb-4 max-w-md">
+            <p className="text-gray-400 mb-6 max-w-md">
               Your trusted partner for comprehensive IT solutions. We deliver exceptional service and support to help your business thrive.
             </p>
+            
+            {/* Social Share Buttons */}
+            <div>
+              <p className="text-white font-semibold mb-4">Follow Us</p>
+              <div className="flex items-center gap-2">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110 ${social.color}`}
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}

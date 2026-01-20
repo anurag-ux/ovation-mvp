@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { Header } from '@/components/mvp/option-3/Header'
+import { CardNav, defaultNavItems } from '@/components/mvp/option-3/CardNav'
 import { HeroSection } from '@/components/mvp/option-3/HeroSection'
 import { ServicesSection } from '@/components/mvp/option-3/ServicesSection'
 import { CoreValuesSection } from '@/components/mvp/option-3/CoreValuesSection'
@@ -27,7 +27,10 @@ export default function Option3() {
       <CursorEffect />
       <ParticleBackground />
       <GeometricBackground />
-      <Header />
+      
+      {/* CardNav - Floating Pill Navigation */}
+      <CardNav items={defaultNavItems} />
+      
       <main>
         <HeroSection />
         <ServicesSection />

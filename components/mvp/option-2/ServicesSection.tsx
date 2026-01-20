@@ -124,8 +124,8 @@ export function ServicesSection() {
 
         {/* Carousel Container */}
         <div className="relative max-w-5xl mx-auto">
-          {/* Service Tabs at Top */}
-          <div className="flex justify-center gap-2 sm:gap-3 mb-8 flex-wrap px-4">
+          {/* Service Tabs - Desktop Only */}
+          <div className="hidden md:flex justify-center gap-2 sm:gap-3 mb-8 flex-wrap px-4">
             {services.map((service, index) => (
               <button
                 key={index}
@@ -155,7 +155,7 @@ export function ServicesSection() {
           </div>
 
           {/* Carousel */}
-          <div className="relative min-h-[600px] md:h-[500px] rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg bg-ovation-bg-primary" style={{ perspective: '1000px' }}>
+          <div className="relative h-[480px] md:h-[550px] rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg bg-ovation-bg-primary" style={{ perspective: '1000px' }}>
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
@@ -188,13 +188,13 @@ export function ServicesSection() {
               >
                 <div className="relative h-full w-full bg-ovation-bg-secondary">
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col md:flex-row items-center justify-center p-4 md:p-8 lg:p-10 gap-6 md:gap-12">
+                  <div className="relative z-10 h-full flex flex-col md:flex-row items-center justify-start md:justify-center p-5 pt-6 md:p-10 lg:p-12 gap-5 md:gap-14">
                     {/* Left: Image */}
                     <motion.div
                       initial={{ x: -30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
-                      className="relative w-full md:w-1/2 h-48 sm:h-56 md:h-full md:max-h-96 rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg flex-shrink-0"
+                      className="relative w-full md:w-1/2 h-40 sm:h-44 md:h-full md:max-h-[420px] rounded-xl overflow-hidden border border-ovation-border-primary shadow-lg flex-shrink-0"
                     >
                       <Image
                         src={currentService.image}
@@ -209,18 +209,18 @@ export function ServicesSection() {
 
                     {/* Right: Content */}
                     <div className="w-full md:w-1/2 text-center md:text-left">
-                      {/* Icon */}
+                      {/* Icon - Hidden on mobile for cleaner look */}
                       <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.5 }}
-                        className="inline-flex items-center justify-center w-16 h-16 md:w-18 md:h-18 bg-ovation-brand-primary/20 rounded-xl border border-ovation-brand-primary/30 mb-5"
+                        className="hidden md:inline-flex items-center justify-center w-20 h-20 bg-ovation-brand-primary/20 rounded-xl border border-ovation-brand-primary/30 mb-6"
                       >
                         <Image
                           src={currentService.icon}
                           alt={`${currentService.title} icon`}
-                          width={36}
-                          height={36}
+                          width={40}
+                          height={40}
                         />
                       </motion.div>
 
@@ -229,27 +229,40 @@ export function ServicesSection() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.4, duration: 0.5 }}
-                        className="ovation-h3 text-ovation-text-primary mb-4"
+                        className="text-xl md:text-2xl lg:text-3xl font-bold text-ovation-text-primary mb-3 md:mb-5"
                       >
                         {currentService.title}
                       </motion.h3>
 
-                      {/* Description */}
+                      {/* Description - Full content without truncation */}
                       <motion.p
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.5, duration: 0.5 }}
-                        className="text-ovation-text-secondary text-base md:text-lg mb-6 leading-relaxed"
+                        className="text-ovation-text-secondary text-sm md:text-lg mb-5 md:mb-7 leading-relaxed"
                       >
                         {currentService.description}
                       </motion.p>
 
-                      {/* Features */}
+                      {/* Learn More Button - Mobile */}
+                      <motion.button
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.6, duration: 0.5 }}
+                        className="md:hidden inline-flex items-center gap-2 px-6 py-2.5 bg-ovation-brand-primary text-ovation-text-primary rounded-lg font-semibold text-sm hover:bg-ovation-brand-primary-hover active:bg-ovation-brand-primary-hover transition-all duration-300"
+                      >
+                        Learn More
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.button>
+
+                      {/* Features - Desktop Only */}
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.5 }}
-                        className="grid grid-cols-2 gap-3"
+                        className="hidden md:grid grid-cols-2 gap-3"
                       >
                         {currentService.features.map((feature, index) => (
                           <motion.div
@@ -257,10 +270,10 @@ export function ServicesSection() {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.7 + index * 0.1, duration: 0.3 }}
-                            className="flex items-start gap-2 bg-ovation-bg-primary/90 backdrop-blur-sm border border-ovation-border-primary rounded-lg p-3 hover:border-ovation-brand-primary/50 hover:bg-ovation-bg-primary transition-all duration-300"
+                            className="flex items-start gap-2.5 bg-ovation-bg-primary/90 backdrop-blur-sm border border-ovation-border-primary rounded-lg p-3.5 hover:border-ovation-brand-primary/50 active:border-ovation-brand-primary/50 hover:bg-ovation-bg-primary transition-all duration-300"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-ovation-brand-primary mt-1.5 flex-shrink-0"></div>
-                            <p className="text-ovation-text-primary text-xs md:text-sm font-semibold leading-tight">{feature}</p>
+                            <div className="w-2 h-2 rounded-full bg-ovation-brand-primary mt-1 flex-shrink-0"></div>
+                            <p className="text-ovation-text-primary text-sm md:text-base font-semibold leading-tight">{feature}</p>
                           </motion.div>
                         ))}
                       </motion.div>

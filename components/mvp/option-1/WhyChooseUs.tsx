@@ -9,17 +9,22 @@ export default function WhyChooseUs() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index') || '0')
             setTimeout(() => {
-              setVisibleCards((prev) => [...prev, index])
+              setVisibleCards((prev) => {
+                if (prev.includes(index)) return prev
+                return [...prev, index]
+              })
             }, index * 150)
+            // Unobserve after first intersection to prevent re-triggering
+            obs.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.2, rootMargin: '50px' }
     )
 
     const cards = sectionRef.current?.querySelectorAll('[data-index]')
@@ -87,10 +92,11 @@ export default function WhyChooseUs() {
             <div
               key={index}
               data-index={index}
-              className={`group premium-card p-6 hover-lift focus-within:ring-2 focus-within:ring-brand-red focus-within:ring-offset-2 focus-within:ring-offset-dark-bg ${
-                visibleCards.includes(index) ? 'animate-fade-in-up opacity-100' : 'opacity-0'
+              className={`group premium-card p-6 hover-lift focus-within:ring-2 focus-within:ring-brand-red focus-within:ring-offset-2 focus-within:ring-offset-dark-bg transition-all duration-700 ease-out ${
+                visibleCards.includes(index) 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
               tabIndex={0}
               role="article"
               aria-label={feature.title}
