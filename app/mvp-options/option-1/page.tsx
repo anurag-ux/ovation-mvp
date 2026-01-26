@@ -9,6 +9,7 @@ import WhyChooseUs from '@/components/mvp/option-1/WhyChooseUs'
 import Statistics from '@/components/mvp/option-1/Statistics'
 import Footer from '@/components/mvp/option-1/Footer'
 import ScrollProgress from '@/components/mvp/option-1/ScrollProgress'
+import { LoadingAnimation } from '@/components/mvp/option-1/LoadingAnimation'
 import Link from 'next/link'
 
 export default function Option1() {
@@ -21,6 +22,7 @@ export default function Option1() {
   }, [])
   return (
     <>
+      <LoadingAnimation />
       {/* Back to Options Link */}
       <div className="fixed top-4 left-4 z-50">
         <Link

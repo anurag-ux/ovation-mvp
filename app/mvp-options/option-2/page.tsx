@@ -9,6 +9,7 @@ import { WhyChooseUsSection } from '@/components/mvp/option-2/WhyChooseUsSection
 import { StatisticsSection } from '@/components/mvp/option-2/StatisticsSection'
 import { CTASection } from '@/components/mvp/option-2/CTASection'
 import { Footer } from '@/components/mvp/option-2/Footer'
+import { LoadingAnimation } from '@/components/mvp/option-2/LoadingAnimation'
 
 export default function Option2() {
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function Option2() {
   }, [])
   return (
     <div className="min-h-screen bg-ovation-bg-primary text-ovation-text-primary" data-option="2">
+      <LoadingAnimation />
       <MegaMenu />
       <main>
         <HeroSection />
